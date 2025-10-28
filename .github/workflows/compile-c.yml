@@ -1,0 +1,50 @@
+name: Compile C Files - Parallel Jobs
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  find-c-files:
+    runs-on: ubuntu-latest
+    outputs:
+      c_files: ${{ steps.find-files.outputs.c_files }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Find C files
+      id: find-files
+      run: |
+        # Находим все .c файлы и сохраняем в output
+        files=$(find . -name "*.c" | jq -R -s -c 'split("\n") | map(select(. != ""))')
+        echo "c_files=$files" >> $GITHUB_OUTPUT
+
+  compile-c-files:
+    needs: find-c-files
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        file_index: ${{ fromJson(needs.find-c-files.outputs.c_files) }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up GCC
+      run: sudo apt-get install -y gcc
+      
+    - name: Compile single C file
+      run: |
+        filename=$(basename "${{ matrix.file_index }}" .c)
+        gcc "${{ matrix.file_index }}" -o "compiled_$filename"
+        echo "✅ Скомпилирован: ${{ matrix.file_index }}"
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: compiled-${{ matrix.file_index }}
+        path: compiled_*
