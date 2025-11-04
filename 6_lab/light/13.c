@@ -7,7 +7,7 @@
 int main() {
     setlocale(LC_ALL, "ru_RU.UTF-8");
     
-    wchar_t str[] = L"Пенис жопа вазелин";
+    wchar_t str[] = L"Слово буква";
     wchar_t ch;
     int i, cnt = 0;
 
