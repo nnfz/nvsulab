@@ -1,13 +1,16 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#include <wchar.h>
+#include <locale.h>
 
 int main() {
+    setlocale(LC_ALL, "");
     char str[100];
     int i;
     
-    printf("Введите строку\n");
-    printf("-> ");
+    wprintf(L"Введите строку: ");
     scanf("%s", str);
 
     int cnt = 0;
@@ -17,8 +20,8 @@ int main() {
         }
     }
     
-    printf("Знаков +-* и цифр: %d\n", cnt);
+    wprintf(L"Знаков +-* и цифр: %d\n", cnt);
 
-    
+    system("pause");
     return 0;
 }

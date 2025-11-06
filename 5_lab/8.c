@@ -1,27 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <wchar.h>
+#include <locale.h>
 
 #define LO -100
 #define HI  100
 
 void ma(int *a, int p, int r) {
     for(int i = 0; i < p; i++) {
-        a[i] = a[i] * r;
+        a[i] *= r;
     }
 }
 
 int main() {
+    setlocale(LC_ALL, "");
     int n, i, p, r;
     int *a;
     srand(time(NULL));
     
-    printf("Длина массива: ");
+    wprintf(L"Длина массива: ");
     scanf("%d", &n);
     
     a = (int *)malloc(n * sizeof(int));
 
-    printf("Исходный массив: [");
+    wprintf(L"Исходный массив: [");
     for(i = 0; i < n; i++) {
         a[i] = LO + rand() % (HI - LO + 1);
         if(i < n - 1) {
@@ -32,15 +35,15 @@ int main() {
     }
     printf("]\n");
 
-    printf("Кол-во элементов: ");
+    wprintf(L"Кол-во элементов: ");
     scanf("%d", &p);
     
-    printf("На что умножаем: ");
+    wprintf(L"На что умножаем: ");
     scanf("%d", &r);
 
     ma(a, p, r);
 
-    printf("Результат: [");
+    wprintf(L"Результат: [");
     for(i = 0; i < n; i++) {
         if(i < n - 1) {
             printf("%d, ", a[i]);
@@ -51,5 +54,6 @@ int main() {
     printf("]\n");
 
     free(a);
+    system("pause");
     return 0;
 }

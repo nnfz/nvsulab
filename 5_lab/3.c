@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <wchar.h>
+#include <locale.h>
 
 long long fac(int n){
     int i;
@@ -12,12 +15,13 @@ long long fac(int n){
 }
 
 int main(){
+    setlocale(LC_ALL, "");
     int n;
 
-    printf("Введите чсло: ");
+    wprintf(L"Введите чсло: ");
     scanf("%d", &n);
 
-    printf("Факториал числа %d!: %d", n, fac(n));
-
+    wprintf(L"Факториал числа %d!: %d\n", n, fac(n));
+    system("pause");
     return 0;
 }

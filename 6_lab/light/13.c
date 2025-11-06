@@ -1,20 +1,27 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
 #include <wchar.h>
 #include <locale.h>
+#include <io.h>
+#include <fcntl.h>
 
 int main() {
-    setlocale(LC_ALL, "ru_RU.UTF-8");
-    
-    wchar_t str[] = L"Слово буква";
+    setlocale(LC_ALL, "");
+    _setmode(_fileno(stdout), _O_U16TEXT);
+    _setmode(_fileno(stdin), _O_U16TEXT);
+
+    wchar_t str[100];
     wchar_t ch;
     int i, cnt = 0;
 
-    wprintf(L"%ls\n", str);
-    wprintf(L"Введите букву\n");
-    wprintf(L"-> ");
-    wscanf(L"%lc", &ch);
+    wprintf(L"Введите строку: ");
+    fgetws(str, 100, stdin);
+    str[wcscspn(str, L"\n")] = L'\0';
+
+    wprintf(L"Введите букву: ");
+    wscanf(L" %lc", &ch);
 
     int len = wcslen(str);
 
@@ -36,5 +43,6 @@ int main() {
 
     wprintf(L"Количество слов, заканчивающихся на букву '%lc': %d\n", ch, cnt);
 
+    system("pause");
     return 0;
 }

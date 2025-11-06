@@ -1,23 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <wchar.h>
+#include <locale.h>
 
 // Длина гадостей
 #define LO -100
 #define HI  100
 
 int main() {
+    setlocale(LC_ALL, "ru_RU.UTF-8");
     int n, i, s = 0;
     int *a;
     int *c;
     srand(time(NULL));
     
-    printf("Длина массва: ");
+    wprintf(L"Длина массва: ");
     scanf("%d", &n);
     
     a = (int *)malloc(n*sizeof(int));
     
-    printf("Исходный массив: [");
+    wprintf(L"Исходный массив: [");
     for(i = 0; i < n; i++){
         a[i] = LO + rand() % (HI - LO + 1);
         if(i < n - 1){
@@ -55,7 +58,7 @@ int main() {
         
     }
     
-    printf("Результат: [");
+    wprintf(L"Результат: [");
     for(i = 0; i < s; i++){
         if(i < s - 1){
             printf("%d, ", c[i]);
@@ -67,6 +70,6 @@ int main() {
 
     free(a);
     free(c);
-    
+    system("pause");
     return 0;
 }

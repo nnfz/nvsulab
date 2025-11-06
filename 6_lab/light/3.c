@@ -1,13 +1,16 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#include <wchar.h>
+#include <locale.h>
 
 int main() {
+    setlocale(LC_ALL, "");
     char str[100];
     int i;
     
-    printf("Введите число и нажмите <Enter>\n");
-    printf("-> ");
+    wprintf(L"Введите число: ");
     scanf("%s", str);
 
     int is_int = 1;
@@ -20,10 +23,11 @@ int main() {
     
     
     if (is_int) {
-        printf("Введенная строка является целым числом.\n");
+        wprintf(L"Целое число.\n");
     } else {
-        printf("Введенная строка не является целым числом.\n");
+        wprintf(L"Не целое число.\n");
     }
     
+    system("pause");
     return 0;
 }

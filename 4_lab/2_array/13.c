@@ -1,21 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <wchar.h>
+#include <locale.h>
 
 #define LO 40
 #define HI 150
 
 int main() {
+    setlocale(LC_ALL, "ru_RU.UTF-8");
     int r, c, i, p;
     int **a;
     srand(time(NULL));
 
-    printf("Колво строк: ");
+    wprintf(L"Колво строк: ");
     scanf("%d", &r);
-    printf("Колво столбцов: ");
+    wprintf(L"Колво столбцов: ");
     scanf("%d", &c);
     if(r == c){
-        printf("Колво столбцов (прямоугольная): %d + 1\n", c);
+        wprintf(L"Колво столбцов (прямоугольная): %d + 1\n", c);
         c += 1;
     }
 
@@ -24,7 +27,7 @@ int main() {
         a[i] = (int *)malloc(c * sizeof(int));
     }
 
-    printf("Исходный массив: [\n");
+    wprintf(L"Исходный массив: [\n");
     for(i = 0; i < r; i++) {
         for(p = 0; p < c; p++) {
             a[i][p] = LO + rand() % (HI - LO + 1);
@@ -33,18 +36,16 @@ int main() {
         printf("\n");
     }
     printf("]\n");
-
-    int s_min, s_max;
-    int min_index, max_index;
-    int *sums;
-
-    sums = (int *)malloc(r * sizeof(int));
+    
+    int *sums = (int *)malloc(r * sizeof(int));
 
     for(i = 0; i < r; i++){
         for(p = 0; p < c; p++) {
             sums[i] += a[i][p];
         }
     }
+    int s_min = sums[0], s_max = sums[0];
+    int min_index = 0, max_index = 0;
 
     for(i = 1; i < r; i++){
         if(sums[i] < s_min) {
@@ -57,14 +58,14 @@ int main() {
         }
     }
 
-    printf("\nСтрока с мин суммой (%d): [", s_min);
+    wprintf(L"\nСтрока с мин суммой (%d): [", s_min);
     for(p = 0; p < c; p++) {
         printf("%d", a[min_index][p]);
         if(p < c - 1) printf(", ");
     }
     printf("]\n");
 
-    printf("Строка с макс суммой (%d): [", s_max);
+    wprintf(L"Строка с макс суммой (%d): [", s_max);
     for(p = 0; p < c; p++) {
         printf("%d", a[max_index][p]);
         if(p < c - 1) printf(", ");
@@ -76,6 +77,6 @@ int main() {
         free(a[i]);
     }
     free(a);
-
+    system("pause");
     return 0;
 }
