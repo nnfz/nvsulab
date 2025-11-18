@@ -25,7 +25,6 @@ void drawSkewGrid(int step)
 
     int k = 0;
 
-    // Наклонные линии одного наклона
     for (int d = -maxy; d <= maxx; d += step) {
         int style = styles[k % nStyles];
         int color = colors[k % nColors];
@@ -37,7 +36,6 @@ void drawSkewGrid(int step)
         line(d, 0, d + maxy, maxy);
     }
 
-    // Линии другого наклона
     for (int d = 0; d <= maxx + maxy; d += step) {
         int style = styles[k % nStyles];
         int color = colors[k % nColors];

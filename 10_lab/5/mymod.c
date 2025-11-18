@@ -1,5 +1,5 @@
 #include "mymod.h"
-#include <wctype.h>   // для towlower
+#include <wctype.h>
 
 long long fac(int n){
     int i;
@@ -24,9 +24,9 @@ int sogl(wchar_t c) {
     
     for (int i = 0; v[i] != L'\0'; i++) {
         if (lower_c == v[i]) {
-            return 0;  // гласная
+            return 0;
         }
     }
     
-    return 1;          // согласная
+    return 1;
 }
