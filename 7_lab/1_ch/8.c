@@ -63,7 +63,7 @@ int main() {
 
     for (int i = 0; i < N; i++) {
 
-        if (_wcsicmp(teachers[i].subject, inSubj) == 0) {
+        if (wcsicmp(teachers[i].subject, inSubj) == 0) {
             wprintf(L"%ls — %ls, стаж: %d лет\n",
                     teachers[i].surname,
                     teachers[i].subject,
@@ -76,7 +76,7 @@ int main() {
         wprintf(L"Нет учителей, преподающих этот предмет.\n");
     }
 
-    wprintf(L"\n");
+    printf("\n");
     system("pause");
     return 0;
 }
