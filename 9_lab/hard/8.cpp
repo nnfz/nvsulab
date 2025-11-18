@@ -13,7 +13,8 @@ int main()
     initwindow(800, 600, "maxim");
 
     setbkcolor(WHITE);
-
+    cleardevice();
+    
     const int N = 5;
     int px[N] = {400, 400, 700, 150, 150};
     int py[N] = {100, 450, 150, 150, 550};

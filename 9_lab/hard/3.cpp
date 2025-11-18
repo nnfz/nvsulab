@@ -13,7 +13,7 @@ int main()
     initwindow(800, 600, "zigzag");
 
     setbkcolor(WHITE);
-
+    cleardevice();
 
     const int N = 5;
     int px[N] = {650, 500, 350, 200, 50};

@@ -27,28 +27,26 @@ int main() {
 
 
     drawRing(x0,          yTop,    r,
-             SOLID_LINE,  4,       BLUE,
-             SOLID_FILL,  LIGHTBLUE);
+        SOLID_LINE,  4,       BLUE,
+        SOLID_FILL,  LIGHTBLUE);
 
     drawRing(x0 + dx,     yTop,    r,
-             SOLID_LINE,  4,       BLACK,
-             HATCH_FILL,  DARKGRAY);
+        SOLID_LINE,  4,       BLACK,
+        HATCH_FILL,  DARKGRAY);
 
     drawRing(x0 + 2*dx,   yTop,    r,
-             SOLID_LINE,  4,       RED,
-             SLASH_FILL,  LIGHTRED);
+        SOLID_LINE,  4,       RED,
+        SLASH_FILL,  LIGHTRED);
+
 
     drawRing(x0 + dx/2,   yBottom, r,
-             SOLID_LINE,  4,       YELLOW,
-             CLOSE_DOT_FILL, YELLOW);
+        SOLID_LINE,  4,       YELLOW,
+        CLOSE_DOT_FILL, YELLOW);
 
     drawRing(x0 + dx + dx/2, yBottom, r,
-             SOLID_LINE,  4,       GREEN,
-             XHATCH_FILL, LIGHTGREEN);
+        SOLID_LINE,  4,       GREEN,
+        XHATCH_FILL, LIGHTGREEN);
 
-    while (!kbhit()) {
-        delay(10);
-    }
     getch();
 
     closegraph();

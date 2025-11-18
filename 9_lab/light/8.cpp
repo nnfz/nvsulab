@@ -2,14 +2,14 @@
 #include <stdio.h>
 
 int main() {
-    int gd = DETECT, gm;
-    initwindow(800, 600, "setka");
+
+    int maxx = 800;
+    int maxy = 600;
+
+    initwindow(maxx, maxy, "setka");
 
     setbkcolor(BLACK);
     cleardevice();
-
-    int maxx = getmaxx();
-    int maxy = getmaxy();
 
     int step = 40;
 
@@ -42,11 +42,6 @@ int main() {
         line(d, 0, d - maxy, maxy);
     }
 
-    outtextxy(10, 10, (char*)"Kosaya setka: raznye cveta i stili");
-
-    while (!kbhit()) {
-        delay(10);
-    }
     getch();
     closegraph();
     return 0;
