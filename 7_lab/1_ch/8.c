@@ -53,7 +53,7 @@ int main() {
     fgetws(inSubj, 30, stdin);
 
 
-    size_t len = wcslen(inSubj);
+    int len = wcslen(inSubj);
     if (len > 0 && inSubj[len - 1] == L'\n')
         inSubj[len - 1] = L'\0';
 
