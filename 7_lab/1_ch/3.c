@@ -3,8 +3,9 @@
 #include <time.h>
 #include <wchar.h>
 #include <locale.h>
+#include <io.h>
+#include <fcntl.h>
 
-#define N 5
 #define SUBJ 3
 
 typedef struct {
@@ -14,14 +15,20 @@ typedef struct {
 
 int main() {
     setlocale(LC_ALL, "ru_RU.UTF-8");
+    _setmode(_fileno(stdout), _O_U16TEXT);
+    _setmode(_fileno(stdin),  _O_U16TEXT);
+    
+    int N;
+    wprintf(L"Введите количество учеников: ");
+    wscanf(L"%d", &N);  // Меняем scanf на wscanf!
 
-    Student students[N] = {
-        {L"Иванов"},
-        {L"Петров"},
-        {L"Сидоров"},
-        {L"Кузнецов"},
-        {L"Смирнов"}
-    };
+    // Динамическое выделение памяти под массив структур
+    Student *students = (Student*)calloc(N, sizeof(Student));
+    
+    if (students == NULL) {
+        wprintf(L"Ошибка выделения памяти!\n");
+        return 1;
+    }
 
     int i, j;
     int subject;
@@ -30,10 +37,15 @@ int main() {
 
     srand(time(NULL));
 
-    wprintf(L"Список учеников:\n");
+    // Заполнение фамилий
+    for (i = 0; i < N; i++) {
+        wprintf(L"Введите фамилию ученика %d: ", i + 1);
+        wscanf(L"%ls", students[i].surname);
+    }
 
-    wprintf(L"Фамилия         | П1 | П2 | П1\n");
-    printf("-----------------------------------\n");
+    wprintf(L"\nСписок учеников:\n");
+    wprintf(L"Фамилия         | П1 | П2 | П3\n");
+    wprintf(L"-----------------------------------\n");  // И тут тоже wprintf!
 
     for (i = 0; i < N; i++) {
         wprintf(L"%-15ls | ", students[i].surname);
@@ -42,13 +54,13 @@ int main() {
             students[i].ball[j] = 2 + rand() % 4;
             wprintf(L"%2d | ", students[i].ball[j]);
         }
-        printf("\n");
+        wprintf(L"\n");  // И здесь тоже
     }
 
-    printf("-----------------------------------\n");
+    wprintf(L"-----------------------------------\n");
 
     wprintf(L"\nВведите номер предмета (1-3): ");
-    scanf("%d", &subject);
+    wscanf(L"%d", &subject);  // Опять wscanf вместо scanf!
     subject--;
 
     for (i = 0; i < N; i++) {
@@ -73,7 +85,6 @@ int main() {
 
     wprintf(L"Ученики со средним баллом выше среднего:\n");
 
-
     for (i = 0; i < N; i++) {
         float avg = 0;
         for (j = 0; j < SUBJ; j++) {
@@ -86,6 +97,9 @@ int main() {
                     students[i].surname, avg);
         }
     }
+
+    // Освобождение памяти
+    free(students);
 
     system("pause");
     return 0;
