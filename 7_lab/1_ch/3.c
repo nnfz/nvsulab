@@ -20,15 +20,9 @@ int main() {
     
     int N;
     wprintf(L"Введите количество учеников: ");
-    wscanf(L"%d", &N);  // Меняем scanf на wscanf!
+    wscanf(L"%d", &N);
 
-    // Динамическое выделение памяти под массив структур
     Student *students = (Student*)calloc(N, sizeof(Student));
-    
-    if (students == NULL) {
-        wprintf(L"Ошибка выделения памяти!\n");
-        return 1;
-    }
 
     int i, j;
     int subject;
@@ -37,7 +31,6 @@ int main() {
 
     srand(time(NULL));
 
-    // Заполнение фамилий
     for (i = 0; i < N; i++) {
         wprintf(L"Введите фамилию ученика %d: ", i + 1);
         wscanf(L"%ls", students[i].surname);
@@ -45,7 +38,7 @@ int main() {
 
     wprintf(L"\nСписок учеников:\n");
     wprintf(L"Фамилия         | П1 | П2 | П3\n");
-    wprintf(L"-----------------------------------\n");  // И тут тоже wprintf!
+    wprintf(L"-----------------------------------\n");
 
     for (i = 0; i < N; i++) {
         wprintf(L"%-15ls | ", students[i].surname);
@@ -54,13 +47,13 @@ int main() {
             students[i].ball[j] = 2 + rand() % 4;
             wprintf(L"%2d | ", students[i].ball[j]);
         }
-        wprintf(L"\n");  // И здесь тоже
+        wprintf(L"\n");
     }
 
     wprintf(L"-----------------------------------\n");
 
     wprintf(L"\nВведите номер предмета (1-3): ");
-    wscanf(L"%d", &subject);  // Опять wscanf вместо scanf!
+    wscanf(L"%d", &subject);
     subject--;
 
     for (i = 0; i < N; i++) {
