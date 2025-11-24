@@ -56,7 +56,6 @@ void removeEven(Spisok **head) {
         *head = (*head)->next;
         free(tmp);
     }
-    if (*head == NULL) return;
 
     Spisok *current = *head;
     while (current->next != NULL) {

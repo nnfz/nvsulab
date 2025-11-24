@@ -56,8 +56,7 @@ void removeValue(Spisok **head, int E) {
         *head = (*head)->next;
         free(tmp);
     }
-    if (*head == NULL) return;
-
+    
     Spisok *current = *head;
     while (current->next != NULL) {
         if (current->next->data == E) {

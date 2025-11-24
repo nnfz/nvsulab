@@ -49,7 +49,6 @@ void print(Spisok *head) {
 }
 
 Spisok* copyList(Spisok *head) {
-    if (head == NULL) return NULL;
     Spisok *newHead = create(head->data);
     Spisok *currentNew = newHead;
     Spisok *currentOld = head->next;
@@ -66,9 +65,6 @@ void insE(Spisok **head, int E) {
     while (current != NULL && current->data != E) {
         current = current->next;
     }
-    if (current == NULL) {
-        return;
-    }
     Spisok *copy = copyList(*head);
     Spisok *temp = current->next;
     current->next = copy;
@@ -79,7 +75,7 @@ void insE(Spisok **head, int E) {
     copy->next = temp;
 }
 
-void clearList(Spisok **head) {
+void clear(Spisok **head) {
     Spisok *current = *head;
     Spisok *next;
     while (current != NULL) {
@@ -114,7 +110,7 @@ int main() {
     wprintf(L"Список после вставки копии после первого вхождения %d: ", E);
     print(head);
     
-    clearList(&head);
+    clear(&head);
     
     system("pause");
     return 0;
