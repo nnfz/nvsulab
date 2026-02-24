@@ -1,9 +1,11 @@
 #include <iostream>
 #include <cmath>
-
+#include <windows.h>
 using namespace std;
 
 int main() {
+    SetConsoleOutputCP(65001);
+    SetConsoleCP(65001); 
     int edge1, edge2, ang; 
     float result, anginrad;
     
@@ -18,6 +20,11 @@ int main() {
     
     result = sqrt((edge1*edge1) + (edge2*edge2) - 2 * edge1 * edge2 * cos(anginrad));
     
-    cout << "Ответ: " << result;
+    cout << "Ответ: " << result << endl;
+    
+    cout << "Нажмите Enter для выхода...";
+    cin.ignore();
+    cin.get();
+
     return 0;
 }
