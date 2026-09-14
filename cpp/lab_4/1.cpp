@@ -10,16 +10,16 @@ const string TEMP_FILENAME = "Temp.dat";
 
 void writeToFile() {
     int num;
-    cout << "˜˜˜˜˜˜˜ ˜˜˜˜˜ ˜˜˜˜˜ ˜˜˜˜˜˜ 1000 (0 ˜˜˜ ˜˜˜˜˜˜˜˜˜˜):" << endl;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†ÐµÐ»Ñ‹Ðµ Ñ‡Ð¸ÑÐ»Ð° Ð±Ð¾Ð»ÑŒÑˆÐµ 1000 (0 Ð´Ð»Ñ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ñ):" << endl;
 
     while (true) {
-        cout << "˜˜˜˜˜: ";
+        cout << "Ð§Ð¸ÑÐ»Ð¾: ";
         cin >> num;
 
         if (num == 0) break;
 
         if (num <= 1000) {
-            cout << "˜˜˜˜˜ ˜˜˜˜˜˜ ˜˜˜˜ ˜˜˜˜˜˜ 1000!" << endl;
+            cout << "Ð§Ð¸ÑÐ»Ð¾ Ð´Ð¾Ð»Ð¶Ð½Ð¾ Ð±Ñ‹Ñ‚ÑŒ > 1000!" << endl;
             continue;
         }
 
@@ -34,41 +34,40 @@ void writeToFile() {
         file.write(reinterpret_cast<char*>(&num), sizeof(int));
         file.close();
 
-        cout << "˜˜˜˜˜ ˜˜˜˜˜˜˜˜ ˜˜ ˜˜˜˜˜˜˜ " << position << endl;
+        cout << "Ð§Ð¸ÑÐ»Ð¾ Ð·Ð°Ð¿Ð¸ÑÐ°Ð½Ð¾ Ð½Ð° Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽ " << position << endl;
     }
 }
 
 void displayFile() {
     ifstream file(FILENAME, ios::binary);
     if (!file) {
-        cout << "˜˜˜˜ ˜˜˜˜ ˜˜˜ ˜˜ ˜˜˜˜˜˜˜˜˜˜!" << endl;
+        cout << "Ð¤Ð°Ð¹Ð» Ð¿ÑƒÑÑ‚ Ð¸Ð»Ð¸ Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚!" << endl;
         return;
     }
 
     int num;
     int position = 0;
-    cout << "\n=== ˜˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜ ===" << endl;
+    cout << "\n=== Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ñ„Ð°Ð¹Ð»Ð° ===" << endl;
 
     while (file.read(reinterpret_cast<char*>(&num), sizeof(int))) {
-        cout << "˜˜˜˜˜˜˜ " << position << ": " << num << endl;
-
+        cout << "ÐŸÐ¾Ð·Ð¸Ñ†Ð¸Ñ " << position << ": " << num << endl;
         position++;
     }
     file.close();
 }
 
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
-
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
+    
     int choice;
 
     do {
-        cout << "\n=== ˜˜˜˜ ===" << endl;
-        cout << "1. ˜˜˜˜˜˜ ˜ ˜˜˜˜" << endl;
-        cout << "2. ˜˜˜˜˜ ˜˜˜˜˜˜˜ ˜˜ ˜˜˜˜˜" << endl;
-        cout << "0. ˜˜˜˜˜" << endl;
-        cout << "˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜˜: ";
+        cout << "\n=== ÐœÐ•ÐÐ® ===" << endl;
+        cout << "1. Ð—Ð°Ð¿Ð¸ÑÑŒ Ð² Ñ„Ð°Ð¹Ð»" << endl;
+        cout << "2. Ð’Ñ‹Ð²Ð¾Ð´ Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ð½Ð° ÑÐºÑ€Ð°Ð½" << endl;
+        cout << "0. Ð’Ñ‹Ñ…Ð¾Ð´" << endl;
+        cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ: ";
         cin >> choice;
 
         switch (choice) {
@@ -79,10 +78,10 @@ int main() {
                 displayFile();
                 break;
             case 0:
-                cout << "˜˜˜˜˜..." << endl;
+                cout << "Ð’Ñ‹Ñ…Ð¾Ð´..." << endl;
                 break;
             default:
-                cout << "˜˜˜˜˜˜˜˜ ˜˜˜˜˜!" << endl;
+                cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€!" << endl;
         }
     } while (choice != 0);
 

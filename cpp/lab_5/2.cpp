@@ -41,16 +41,16 @@ int countRecordsWithHash(const string& mainFile, int hash) {
 
 void addStudent() {
     Student s;
-    cout << "Ââåäèòå ÔÈÎ (äî 20 ñèìâîëîâ, çàãëàâíûå êèðèëëèöà): ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¤Ð˜Ðž (Ð´Ð¾ 20 ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð², Ð·Ð°Ð³Ð»Ð°Ð²Ð½Ñ‹Ðµ ÐºÐ¸Ñ€Ð¸Ð»Ð»Ð¸Ñ†Ð°): ";
     cin.ignore();
     cin.getline(s.fio, 21);
-    cout << "Ââåäèòå êóðñ: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÑƒÑ€Ñ: ";
     cin >> s.course;
-    cout << "Ââåäèòå ãðóïïó: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð³Ñ€ÑƒÐ¿Ð¿Ñƒ: ";
     cin >> s.group;
 
     int hash = hashFunction(s.fio);
-    cout << "Âû÷èñëåí õåø: " << hash << endl;
+    cout << "Ð’Ñ‹Ñ‡Ð¸ÑÐ»ÐµÐ½ Ñ…ÐµÑˆ: " << hash << endl;
 
     string mainFile = "student.dat";
     int recordsWithHash = countRecordsWithHash(mainFile, hash);
@@ -59,21 +59,21 @@ void addStudent() {
         ofstream file(mainFile, ios::binary | ios::app);
         file.write(reinterpret_cast<char*>(&s), sizeof(Student));
         file.close();
-        cout << "Àäðåñ ñâîáîäåí. Çàïèñü äîáàâëåíà â ãëàâíûé ôàéë student.dat" << endl;
+        cout << "ÐÐ´Ñ€ÐµÑ ÑÐ²Ð¾Ð±Ð¾Ð´ÐµÐ½. Ð—Ð°Ð¿Ð¸ÑÑŒ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð° Ð² Ð³Ð»Ð°Ð²Ð½Ñ‹Ð¹ Ñ„Ð°Ð¹Ð» student.dat" << endl;
     } else {
         string collisionFile = getCollisionFilename(hash);
         ofstream file(collisionFile, ios::binary | ios::app);
         file.write(reinterpret_cast<char*>(&s), sizeof(Student));
         file.close();
-        cout << "Àäðåñ çàíÿò! Êîëëèçèÿ. Çàïèñü äîáàâëåíà â ôàéë " << collisionFile << endl;
+        cout << "ÐÐ´Ñ€ÐµÑ Ð·Ð°Ð½ÑÑ‚! ÐšÐ¾Ð»Ð»Ð¸Ð·Ð¸Ñ. Ð—Ð°Ð¿Ð¸ÑÑŒ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð° Ð² Ñ„Ð°Ð¹Ð» " << collisionFile << endl;
     }
 }
 
 void displayAll() {
-    cout << "\n=== Âñå çàïèñè ===" << endl;
+    cout << "\n=== Ð’ÑÐµ Ð·Ð°Ð¿Ð¸ÑÐ¸ ===" << endl;
     int totalCount = 0;
 
-    cout << "\n--- Ãëàâíûé ôàéë student.dat ---" << endl;
+    cout << "\n--- Ð“Ð»Ð°Ð²Ð½Ñ‹Ð¹ Ñ„Ð°Ð¹Ð» student.dat ---" << endl;
     ifstream mainFile("student.dat", ios::binary);
     if (mainFile) {
         Student s;
@@ -81,18 +81,18 @@ void displayAll() {
         while (mainFile.read(reinterpret_cast<char*>(&s), sizeof(Student))) {
             count++;
             totalCount++;
-            cout << count << ". " << s.fio << ", êóðñ " << s.course
-                 << ", ãðóïïà " << s.group << " (õåø: " << hashFunction(s.fio) << ")" << endl;
+            cout << count << ". " << s.fio << ", ÐºÑƒÑ€Ñ " << s.course
+                 << ", Ð³Ñ€ÑƒÐ¿Ð¿Ð° " << s.group << " (Ñ…ÐµÑˆ: " << hashFunction(s.fio) << ")" << endl;
         }
         mainFile.close();
         if (count == 0) {
-            cout << "(ïóñòî)" << endl;
+            cout << "(Ð¿ÑƒÑÑ‚Ð¾)" << endl;
         }
     } else {
-        cout << "(ôàéë íå ñóùåñòâóåò)" << endl;
+        cout << "(Ñ„Ð°Ð¹Ð» Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚)" << endl;
     }
 
-    cout << "\n--- Âñïîìîãàòåëüíûå ôàéëû (êîëëèçèè) ---" << endl;
+    cout << "\n--- Ð’ÑÐ¿Ð¾Ð¼Ð¾Ð³Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ Ñ„Ð°Ð¹Ð»Ñ‹ (ÐºÐ¾Ð»Ð»Ð¸Ð·Ð¸Ð¸) ---" << endl;
     bool foundCollisions = false;
     for (int hash = 0; hash < 1000; hash++) {
         string collisionFile = getCollisionFilename(hash);
@@ -101,12 +101,12 @@ void displayAll() {
         if (file) {
             Student s;
             int count = 0;
-            cout << "\nÔàéë " << collisionFile << ":" << endl;
+            cout << "\nÐ¤Ð°Ð¹Ð» " << collisionFile << ":" << endl;
             while (file.read(reinterpret_cast<char*>(&s), sizeof(Student))) {
                 count++;
                 totalCount++;
-                cout << "  " << count << ". " << s.fio << ", êóðñ " << s.course
-                     << ", ãðóïïà " << s.group << endl;
+                cout << "  " << count << ". " << s.fio << ", ÐºÑƒÑ€Ñ " << s.course
+                     << ", Ð³Ñ€ÑƒÐ¿Ð¿Ð° " << s.group << endl;
             }
             file.close();
             foundCollisions = true;
@@ -114,20 +114,20 @@ void displayAll() {
     }
 
     if (!foundCollisions) {
-        cout << "(íåò âñïîìîãàòåëüíûõ ôàéëîâ)" << endl;
+        cout << "(Ð½ÐµÑ‚ Ð²ÑÐ¿Ð¾Ð¼Ð¾Ð³Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ… Ñ„Ð°Ð¹Ð»Ð¾Ð²)" << endl;
     }
 
-    cout << "\nÂñåãî çàïèñåé: " << totalCount << endl;
+    cout << "\nÐ’ÑÐµÐ³Ð¾ Ð·Ð°Ð¿Ð¸ÑÐµÐ¹: " << totalCount << endl;
 }
 
 void findStudent() {
     char fio[21];
-    cout << "Ââåäèòå ÔÈÎ äëÿ ïîèñêà: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¤Ð˜Ðž Ð´Ð»Ñ Ð¿Ð¾Ð¸ÑÐºÐ°: ";
     cin.ignore();
     cin.getline(fio, 21);
 
     int hash = hashFunction(fio);
-    cout << "Èùåì ïî õåøó: " << hash << endl;
+    cout << "Ð˜Ñ‰ÐµÐ¼ Ð¿Ð¾ Ñ…ÐµÑˆÑƒ: " << hash << endl;
     bool found = false;
 
     ifstream mainFile("student.dat", ios::binary);
@@ -135,10 +135,10 @@ void findStudent() {
 
     while (mainFile.read(reinterpret_cast<char*>(&s), sizeof(Student))) {
         if (strcmp(s.fio, fio) == 0) {
-            cout << "\nÍàéäåíî â student.dat:" << endl;
-            cout << "ÔÈÎ: " << s.fio << endl;
-            cout << "Êóðñ: " << s.course << endl;
-            cout << "Ãðóïïà: " << s.group << endl;
+            cout << "\nÐÐ°Ð¹Ð´ÐµÐ½Ð¾ Ð² student.dat:" << endl;
+            cout << "Ð¤Ð˜Ðž: " << s.fio << endl;
+            cout << "ÐšÑƒÑ€Ñ: " << s.course << endl;
+            cout << "Ð“Ñ€ÑƒÐ¿Ð¿Ð°: " << s.group << endl;
             found = true;
             break;
         }
@@ -151,10 +151,10 @@ void findStudent() {
 
         while (file.read(reinterpret_cast<char*>(&s), sizeof(Student))) {
             if (strcmp(s.fio, fio) == 0) {
-                cout << "\nÍàéäåíî â " << collisionFile << ":" << endl;
-                cout << "ÔÈÎ: " << s.fio << endl;
-                cout << "Êóðñ: " << s.course << endl;
-                cout << "Ãðóïïà: " << s.group << endl;
+                cout << "\nÐÐ°Ð¹Ð´ÐµÐ½Ð¾ Ð² " << collisionFile << ":" << endl;
+                cout << "Ð¤Ð˜Ðž: " << s.fio << endl;
+                cout << "ÐšÑƒÑ€Ñ: " << s.course << endl;
+                cout << "Ð“Ñ€ÑƒÐ¿Ð¿Ð°: " << s.group << endl;
                 found = true;
                 break;
             }
@@ -163,23 +163,23 @@ void findStudent() {
     }
 
     if (!found) {
-        cout << "Ñòóäåíò íå íàéäåí." << endl;
+        cout << "Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½." << endl;
     }
 }
 
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
     int choice;
 
     do {
-        cout << "\n=== ÌÅÍÞ ===" << endl;
-        cout << "1. Äîáàâèòü ñòóäåíòà" << endl;
-        cout << "2. Âûâåñòè âñåõ ñòóäåíòîâ" << endl;
-        cout << "3. Íàéòè ñòóäåíòà" << endl;
-        cout << "0. Âûõîä" << endl;
-        cout << "Âûáåðèòå äåéñòâèå: ";
+        cout << "\n=== ÐœÐ•ÐÐ® ===" << endl;
+        cout << "1. Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð°" << endl;
+        cout << "2. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð²ÑÐµÑ… ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð¾Ð²" << endl;
+        cout << "3. ÐÐ°Ð¹Ñ‚Ð¸ ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð°" << endl;
+        cout << "0. Ð’Ñ‹Ñ…Ð¾Ð´" << endl;
+        cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ: ";
         cin >> choice;
 
         switch (choice) {
@@ -193,10 +193,10 @@ int main() {
                 findStudent();
                 break;
             case 0:
-                cout << "Âûõîä..." << endl;
+                cout << "Ð’Ñ‹Ñ…Ð¾Ð´..." << endl;
                 break;
             default:
-                cout << "Íåâåðíûé âûáîð!" << endl;
+                cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€!" << endl;
         }
     } while (choice != 0);
 

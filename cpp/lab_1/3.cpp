@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdexcept>
+#include <windows.h>
 
 using namespace std;
 
@@ -17,22 +18,22 @@ public:
 
     void enqueue(double value) {
         if (isFull()) {
-            throw overflow_error("Очередь переполнена!");
+            throw overflow_error("РћС‡РµСЂРµРґСЊ РїРµСЂРµРїРѕР»РЅРµРЅР°!");
         }
         rearIndex = (rearIndex + 1) % MAX_SIZE;
         data[rearIndex] = value;
         count++;
-        cout << "Элемент " << value << " добавлен в очередь." << endl;
+        cout << "Р­Р»РµРјРµРЅС‚ " << value << " РґРѕР±Р°РІР»РµРЅ РІ РѕС‡РµСЂРµРґСЊ." << endl;
     }
 
     double dequeue() {
         if (isEmpty()) {
-            throw underflow_error("Очередь пуста! Невозможно удалить элемент.");
+            throw underflow_error("РћС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°! РќРµРІРѕР·РјРѕР¶РЅРѕ СѓРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚.");
         }
         double value = data[frontIndex];
         frontIndex = (frontIndex + 1) % MAX_SIZE;
         count--;
-        cout << "Элемент " << value << " удален из очереди." << endl;
+        cout << "Р­Р»РµРјРµРЅС‚ " << value << " СѓРґР°Р»РµРЅ РёР· РѕС‡РµСЂРµРґРё." << endl;
         return value;
     }
 
@@ -50,17 +51,17 @@ public:
 
     double front() const {
         if (isEmpty()) {
-            throw underflow_error("Очередь пуста! Нет первого элемента.");
+            throw underflow_error("РћС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°! РќРµС‚ РїРµСЂРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°.");
         }
         return data[frontIndex];
     }
 
     void display() const {
         if (isEmpty()) {
-            cout << "Очередь пуста!" << endl;
+            cout << "РћС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°!" << endl;
             return;
         }
-        cout << "Содержимое очереди (спереди назад): ";
+        cout << "РЎРѕРґРµСЂР¶РёРјРѕРµ РѕС‡РµСЂРµРґРё (СЃРїРµСЂРµРґРё РЅР°Р·Р°Рґ): ";
         int index = frontIndex;
         for (int i = 0; i < count; i++) {
             cout << data[index] << " ";
@@ -71,27 +72,28 @@ public:
 };
 
 int main() {
-    setlocale(LC_ALL, "Russian");
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
     Queue queue;
     int choice;
     double value;
 
     do {
-        cout << "\n=== МЕНЮ ОЧЕРЕДИ ===" << endl;
-        cout << "1. Добавить элемент (enqueue)" << endl;
-        cout << "2. Удалить элемент (dequeue)" << endl;
-        cout << "3. Показать длину очереди" << endl;
-        cout << "4. Показать содержимое очереди" << endl;
-        cout << "5. Показать первый элемент" << endl;
-        cout << "0. Выход" << endl;
-        cout << "Выберите действие: ";
+        cout << "\n=== РњР•РќР® РћР§Р•Р Р•Р”Р ===" << endl;
+        cout << "1. Р”РѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚ (enqueue)" << endl;
+        cout << "2. РЈРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚ (dequeue)" << endl;
+        cout << "3. РџРѕРєР°Р·Р°С‚СЊ РґР»РёРЅСѓ РѕС‡РµСЂРµРґРё" << endl;
+        cout << "4. РџРѕРєР°Р·Р°С‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ РѕС‡РµСЂРµРґРё" << endl;
+        cout << "5. РџРѕРєР°Р·Р°С‚СЊ РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚" << endl;
+        cout << "0. Р’С‹С…РѕРґ" << endl;
+        cout << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ";
         cin >> choice;
 
         try {
             switch (choice) {
                 case 1:
-                    cout << "Введите вещественное число: ";
+                    cout << "Р’РІРµРґРёС‚Рµ РІРµС‰РµСЃС‚РІРµРЅРЅРѕРµ С‡РёСЃР»Рѕ: ";
                     cin >> value;
                     queue.enqueue(value);
                     break;
@@ -101,7 +103,7 @@ int main() {
                     break;
 
                 case 3:
-                    cout << "Длина очереди: " << queue.length() << endl;
+                    cout << "Р”Р»РёРЅР° РѕС‡РµСЂРµРґРё: " << queue.length() << endl;
                     break;
 
                 case 4:
@@ -109,18 +111,18 @@ int main() {
                     break;
 
                 case 5:
-                    cout << "Первый элемент: " << queue.front() << endl;
+                    cout << "РџРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚: " << queue.front() << endl;
                     break;
 
                 case 0:
-                    cout << "Выход из программы..." << endl;
+                    cout << "Р’С‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹..." << endl;
                     break;
 
                 default:
-                    cout << "Неверный выбор! Попробуйте снова." << endl;
+                    cout << "РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ! РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°." << endl;
             }
         } catch (const exception& e) {
-            cout << "Ошибка: " << e.what() << endl;
+            cout << "РћС€РёР±РєР°: " << e.what() << endl;
         }
 
     } while (choice != 0);

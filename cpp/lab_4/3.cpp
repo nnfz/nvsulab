@@ -40,17 +40,17 @@ public:
             rear = newNode;
         }
         count++;
-        cout << "Город добавлен в очередь." << endl;
+        cout << "Р“РѕСЂРѕРґ РґРѕР±Р°РІР»РµРЅ РІ РѕС‡РµСЂРµРґСЊ." << endl;
     }
 
     void dequeue() {
         if (front == nullptr) {
-            cout << "Очередь пуста!" << endl;
+            cout << "РћС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°!" << endl;
             return;
         }
 
         Node* temp = front;
-        cout << "Удален город: " << front->city << endl;
+        cout << "РЈРґР°Р»РµРЅ РіРѕСЂРѕРґ: " << front->city << endl;
         front = front->next;
 
         if (front == nullptr) {
@@ -69,13 +69,13 @@ public:
 
     void display() {
         if (front == nullptr) {
-            cout << "Очередь пуста!" << endl;
+            cout << "РћС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°!" << endl;
             return;
         }
 
         Node* current = front;
         int num = 1;
-        cout << "\n=== Города в очереди (от начала к концу) ===" << endl;
+        cout << "\n=== Р“РѕСЂРѕРґР° РІ РѕС‡РµСЂРµРґРё (РѕС‚ РЅР°С‡Р°Р»Р° Рє РєРѕРЅС†Сѓ) ===" << endl;
         while (current != nullptr) {
             cout << num++ << ". " << current->city << endl;
             current = current->next;
@@ -84,13 +84,13 @@ public:
 
     void displayReverse() {
         if (rear == nullptr) {
-            cout << "Очередь пуста!" << endl;
+            cout << "РћС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°!" << endl;
             return;
         }
 
         Node* current = rear;
         int num = 1;
-        cout << "\n=== Города в очереди (от конца к началу) ===" << endl;
+        cout << "\n=== Р“РѕСЂРѕРґР° РІ РѕС‡РµСЂРµРґРё (РѕС‚ РєРѕРЅС†Р° Рє РЅР°С‡Р°Р»Сѓ) ===" << endl;
         while (current != nullptr) {
             cout << num++ << ". " << current->city << endl;
             current = current->prev;
@@ -110,29 +110,29 @@ public:
 };
 
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
     CityQueue queue;
     int choice;
     char city[100];
 
     do {
-        cout << "\n=== МЕНЮ ===" << endl;
-        cout << "1. Добавить город" << endl;
-        cout << "2. Удалить город" << endl;
-        cout << "3. Мощность множества" << endl;
-        cout << "4. Просмотр всех элементов (начало -> конец)" << endl;
-        cout << "5. Просмотр всех элементов (конец -> начало)" << endl;
-        cout << "6. Проверить принадлежность" << endl;
-        cout << "0. Выход" << endl;
-        cout << "Выберите действие: ";
+        cout << "\n=== РњР•РќР® ===" << endl;
+        cout << "1. Р”РѕР±Р°РІРёС‚СЊ РіРѕСЂРѕРґ" << endl;
+        cout << "2. РЈРґР°Р»РёС‚СЊ РіРѕСЂРѕРґ" << endl;
+        cout << "3. РњРѕС‰РЅРѕСЃС‚СЊ РјРЅРѕР¶РµСЃС‚РІР°" << endl;
+        cout << "4. РџСЂРѕСЃРјРѕС‚СЂ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ (РЅР°С‡Р°Р»Рѕ -> РєРѕРЅРµС†)" << endl;
+        cout << "5. РџСЂРѕСЃРјРѕС‚СЂ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ (РєРѕРЅРµС† -> РЅР°С‡Р°Р»Рѕ)" << endl;
+        cout << "6. РџСЂРѕРІРµСЂРёС‚СЊ РїСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ" << endl;
+        cout << "0. Р’С‹С…РѕРґ" << endl;
+        cout << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ";
         cin >> choice;
         cin.ignore();
 
         switch (choice) {
             case 1:
-                cout << "Введите название города: ";
+                cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР°: ";
                 cin.getline(city, 100);
                 queue.enqueue(city);
                 break;
@@ -140,7 +140,7 @@ int main() {
                 queue.dequeue();
                 break;
             case 3:
-                cout << "Мощность множества: " << queue.size() << endl;
+                cout << "РњРѕС‰РЅРѕСЃС‚СЊ РјРЅРѕР¶РµСЃС‚РІР°: " << queue.size() << endl;
                 break;
             case 4:
                 queue.display();
@@ -149,19 +149,19 @@ int main() {
                 queue.displayReverse();
                 break;
             case 6:
-                cout << "Введите название города для проверки: ";
+                cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РіРѕСЂРѕРґР° РґР»СЏ РїСЂРѕРІРµСЂРєРё: ";
                 cin.getline(city, 100);
                 if (queue.contains(city)) {
-                    cout << "Город найден в очереди." << endl;
+                    cout << "Р“РѕСЂРѕРґ РЅР°Р№РґРµРЅ РІ РѕС‡РµСЂРµРґРё." << endl;
                 } else {
-                    cout << "Город не найден в очереди." << endl;
+                    cout << "Р“РѕСЂРѕРґ РЅРµ РЅР°Р№РґРµРЅ РІ РѕС‡РµСЂРµРґРё." << endl;
                 }
                 break;
             case 0:
-                cout << "Выход..." << endl;
+                cout << "Р’С‹С…РѕРґ..." << endl;
                 break;
             default:
-                cout << "Неверный выбор!" << endl;
+                cout << "РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ!" << endl;
         }
     } while (choice != 0);
 

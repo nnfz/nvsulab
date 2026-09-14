@@ -30,10 +30,10 @@ string getCollisionFilename(int hash) {
 
 void addPerson() {
     Person p;
-    cout << "Ââåäèòå ôàìèëèþ: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÑŽ: ";
     cin.ignore();
     cin.getline(p.surname, 50);
-    cout << "Ââåäèòå èìÿ: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ: ";
     cin.getline(p.name, 50);
 
     int hash = hashFunction(p.surname);
@@ -52,18 +52,18 @@ void addPerson() {
         ofstream outFile(mainFile, ios::binary);
         outFile.write(reinterpret_cast<char*>(&p), sizeof(Person));
         outFile.close();
-        cout << "Çàïèñü äîáàâëåíà â îñíîâíîé ôàéë (õåø: " << hash << ")" << endl;
+        cout << "Ð—Ð°Ð¿Ð¸ÑÑŒ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð° Ð² Ð¾ÑÐ½Ð¾Ð²Ð½Ð¾Ð¹ Ñ„Ð°Ð¹Ð» (Ñ…ÐµÑˆ: " << hash << ")" << endl;
     } else {
         string collisionFile = getCollisionFilename(hash);
         ofstream outFile(collisionFile, ios::binary | ios::app);
         outFile.write(reinterpret_cast<char*>(&p), sizeof(Person));
         outFile.close();
-        cout << "Êîëëèçèÿ! Çàïèñü äîáàâëåíà â ôàéë êîëëèçèé (õåø: " << hash << ")" << endl;
+        cout << "ÐšÐ¾Ð»Ð»Ð¸Ð·Ð¸Ñ! Ð—Ð°Ð¿Ð¸ÑÑŒ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð° Ð² Ñ„Ð°Ð¹Ð» ÐºÐ¾Ð»Ð»Ð¸Ð·Ð¸Ð¹ (Ñ…ÐµÑˆ: " << hash << ")" << endl;
     }
 }
 
 void displayAll() {
-    cout << "\n=== Âñå çàïèñè ===" << endl;
+    cout << "\n=== Ð’ÑÐµ Ð·Ð°Ð¿Ð¸ÑÐ¸ ===" << endl;
     int count = 0;
 
     for (int hash = 0; hash < 65536; hash++) {
@@ -75,7 +75,7 @@ void displayAll() {
             if (file.read(reinterpret_cast<char*>(&p), sizeof(Person))) {
                 count++;
                 cout << count << ". " << p.surname << " " << p.name
-                     << " (õåø: " << hash << ", îñíîâíîé)" << endl;
+                     << " (Ñ…ÐµÑˆ: " << hash << ", Ð¾ÑÐ½Ð¾Ð²Ð½Ð¾Ð¹)" << endl;
             }
             file.close();
         }
@@ -88,22 +88,22 @@ void displayAll() {
             while (collFile.read(reinterpret_cast<char*>(&p), sizeof(Person))) {
                 count++;
                 cout << count << ". " << p.surname << " " << p.name
-                     << " (õåø: " << hash << ", êîëëèçèÿ)" << endl;
+                     << " (Ñ…ÐµÑˆ: " << hash << ", ÐºÐ¾Ð»Ð»Ð¸Ð·Ð¸Ñ)" << endl;
             }
             collFile.close();
         }
     }
 
     if (count == 0) {
-        cout << "Çàïèñåé íåò." << endl;
+        cout << "Ð—Ð°Ð¿Ð¸ÑÐµÐ¹ Ð½ÐµÑ‚." << endl;
     } else {
-        cout << "Âñåãî çàïèñåé: " << count << endl;
+        cout << "Ð’ÑÐµÐ³Ð¾ Ð·Ð°Ð¿Ð¸ÑÐµÐ¹: " << count << endl;
     }
 }
 
 void findPerson() {
     char surname[50];
-    cout << "Ââåäèòå ôàìèëèþ äëÿ ïîèñêà: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÑŽ Ð´Ð»Ñ Ð¿Ð¾Ð¸ÑÐºÐ°: ";
     cin.ignore();
     cin.getline(surname, 50);
 
@@ -116,7 +116,7 @@ void findPerson() {
 
     if (file.read(reinterpret_cast<char*>(&p), sizeof(Person))) {
         if (strcmp(p.surname, surname) == 0) {
-            cout << "Íàéäåíî: " << p.surname << " " << p.name << endl;
+            cout << "ÐÐ°Ð¹Ð´ÐµÐ½Ð¾: " << p.surname << " " << p.name << endl;
             found = true;
         }
     }
@@ -128,7 +128,7 @@ void findPerson() {
 
         while (collFile.read(reinterpret_cast<char*>(&p), sizeof(Person))) {
             if (strcmp(p.surname, surname) == 0) {
-                cout << "Íàéäåíî: " << p.surname << " " << p.name << endl;
+                cout << "ÐÐ°Ð¹Ð´ÐµÐ½Ð¾: " << p.surname << " " << p.name << endl;
                 found = true;
                 break;
             }
@@ -137,23 +137,23 @@ void findPerson() {
     }
 
     if (!found) {
-        cout << "Çàïèñü íå íàéäåíà." << endl;
+        cout << "Ð—Ð°Ð¿Ð¸ÑÑŒ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°." << endl;
     }
 }
 
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
     int choice;
 
     do {
-        cout << "\n=== ÌÅÍÞ ===" << endl;
-        cout << "1. Äîáàâèòü çàïèñü" << endl;
-        cout << "2. Âûâåñòè âñå çàïèñè" << endl;
-        cout << "3. Íàéòè çàïèñü" << endl;
-        cout << "0. Âûõîä" << endl;
-        cout << "Âûáåðèòå äåéñòâèå: ";
+        cout << "\n=== ÐœÐ•ÐÐ® ===" << endl;
+        cout << "1. Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ð¸ÑÑŒ" << endl;
+        cout << "2. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð²ÑÐµ Ð·Ð°Ð¿Ð¸ÑÐ¸" << endl;
+        cout << "3. ÐÐ°Ð¹Ñ‚Ð¸ Ð·Ð°Ð¿Ð¸ÑÑŒ" << endl;
+        cout << "0. Ð’Ñ‹Ñ…Ð¾Ð´" << endl;
+        cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ: ";
         cin >> choice;
 
         switch (choice) {
@@ -167,10 +167,10 @@ int main() {
                 findPerson();
                 break;
             case 0:
-                cout << "Âûõîä..." << endl;
+                cout << "Ð’Ñ‹Ñ…Ð¾Ð´..." << endl;
                 break;
             default:
-                cout << "Íåâåðíûé âûáîð!" << endl;
+                cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€!" << endl;
         }
     } while (choice != 0);
 

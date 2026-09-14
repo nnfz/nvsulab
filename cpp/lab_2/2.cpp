@@ -1,10 +1,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <windows.h>
 
 using namespace std;
 
-const int SIZE = 1000;
+const int ARRAY_SIZE = 1000;  // –ü–µ—Ä–µ–∏–º–µ–Ω–æ–≤–∞–Ω–æ, —á—Ç–æ–±—ã –∏–∑–±–µ–∂–∞—Ç—å –∫–æ–Ω—Ñ–ª–∏–∫—Ç–∞ —Å SIZE –∏–∑ windows.h
 
 void generateSortedArray(double arr[], int size) {
     srand(time(0));
@@ -47,46 +48,47 @@ int binarySearch(double arr[], int size, double key, int& steps) {
 }
 
 int main() {
-    setlocale(LC_ALL, "Russian");
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
-    double B[SIZE];
-    generateSortedArray(B, SIZE);
+    double B[ARRAY_SIZE];
+    generateSortedArray(B, ARRAY_SIZE);
 
-    cout << "—„ÂÌÂËÓ‚‡Ì ÓÚÒÓÚËÓ‚‡ÌÌ˚È Ï‡ÒÒË‚ ËÁ " << SIZE << " ˝ÎÂÏÂÌÚÓ‚." << endl;
-    cout << "œÂ‚˚Â 10 ˝ÎÂÏÂÌÚÓ‚: ";
+    cout << "–°–≥–µ–Ω–µ—Ä–∏—Ä–æ–≤–∞–Ω –æ—Ç—Å–æ—Ä—Ç–∏—Ä–æ–≤–∞–Ω–Ω—ã–π –º–∞—Å—Å–∏–≤ –∏–∑ " << ARRAY_SIZE << " —ç–ª–µ–º–µ–Ω—Ç–æ–≤." << endl;
+    cout << "–ü–µ—Ä–≤—ã–µ 10 —ç–ª–µ–º–µ–Ω—Ç–æ–≤: ";
     for (int i = 0; i < 10; i++) {
         cout << B[i] << " ";
     }
     cout << endl;
 
     double key;
-    cout << "\n¬‚Â‰ËÚÂ ˜ËÒÎÓ ‰Îˇ ÔÓËÒÍ‡: ";
+    cout << "\n–í–≤–µ–¥–∏—Ç–µ —á–∏—Å–ª–æ –¥–ª—è –ø–æ–∏—Å–∫–∞: ";
     cin >> key;
 
     int stepsSeq, stepsBin;
 
-    int resultSeq = sequentialSearch(B, SIZE, key, stepsSeq);
-    int resultBin = binarySearch(B, SIZE, key, stepsBin);
+    int resultSeq = sequentialSearch(B, ARRAY_SIZE, key, stepsSeq);
+    int resultBin = binarySearch(B, ARRAY_SIZE, key, stepsBin);
 
-    cout << "\n=== œÓÒÎÂ‰Ó‚‡ÚÂÎ¸Ì˚È ÔÓËÒÍ ===" << endl;
+    cout << "\n=== –ü–æ—Å–ª–µ–¥–æ–≤–∞—Ç–µ–ª—å–Ω—ã–π –ø–æ–∏—Å–∫ ===" << endl;
     if (resultSeq != -1) {
-        cout << "›ÎÂÏÂÌÚ Ì‡È‰ÂÌ Ì‡ ÔÓÁËˆËË: " << resultSeq << endl;
+        cout << "–≠–ª–µ–º–µ–Ω—Ç –Ω–∞–π–¥–µ–Ω –Ω–∞ –ø–æ–∑–∏—Ü–∏–∏: " << resultSeq << endl;
     } else {
-        cout << "›ÎÂÏÂÌÚ ÌÂ Ì‡È‰ÂÌ" << endl;
+        cout << "–≠–ª–µ–º–µ–Ω—Ç –Ω–µ –Ω–∞–π–¥–µ–Ω" << endl;
     }
-    cout << " ÓÎË˜ÂÒÚ‚Ó ¯‡„Ó‚: " << stepsSeq << endl;
+    cout << "–ö–æ–ª–∏—á–µ—Å—Ç–≤–æ —à–∞–≥–æ–≤: " << stepsSeq << endl;
 
-    cout << "\n=== ¡ËÌ‡Ì˚È ÔÓËÒÍ ===" << endl;
+    cout << "\n=== –ë–∏–Ω–∞—Ä–Ω—ã–π –ø–æ–∏—Å–∫ ===" << endl;
     if (resultBin != -1) {
-        cout << "›ÎÂÏÂÌÚ Ì‡È‰ÂÌ Ì‡ ÔÓÁËˆËË: " << resultBin << endl;
+        cout << "–≠–ª–µ–º–µ–Ω—Ç –Ω–∞–π–¥–µ–Ω –Ω–∞ –ø–æ–∑–∏—Ü–∏–∏: " << resultBin << endl;
     } else {
-        cout << "›ÎÂÏÂÌÚ ÌÂ Ì‡È‰ÂÌ" << endl;
+        cout << "–≠–ª–µ–º–µ–Ω—Ç –Ω–µ –Ω–∞–π–¥–µ–Ω" << endl;
     }
-    cout << " ÓÎË˜ÂÒÚ‚Ó ¯‡„Ó‚: " << stepsBin << endl;
+    cout << "–ö–æ–ª–∏—á–µ—Å—Ç–≤–æ —à–∞–≥–æ–≤: " << stepsBin << endl;
 
-    cout << "\n=== —‡‚ÌÂÌËÂ ===" << endl;
-    cout << "–‡ÁÌËˆ‡ ‚ ÍÓÎË˜ÂÒÚ‚Â ¯‡„Ó‚: " << (stepsSeq - stepsBin) << endl;
-    cout << "¡ËÌ‡Ì˚È ÔÓËÒÍ ˝ÙÙÂÍÚË‚ÌÂÂ ‚ " << (double)stepsSeq / stepsBin << " ‡Á" << endl;
+    cout << "\n=== –°—Ä–∞–≤–Ω–µ–Ω–∏–µ ===" << endl;
+    cout << "–†–∞–∑–Ω–∏—Ü–∞ –≤ –∫–æ–ª–∏—á–µ—Å—Ç–≤–µ —à–∞–≥–æ–≤: " << (stepsSeq - stepsBin) << endl;
+    cout << "–ë–∏–Ω–∞—Ä–Ω—ã–π –ø–æ–∏—Å–∫ —ç—Ñ—Ñ–µ–∫—Ç–∏–≤–Ω–µ–µ –≤ " << (double)stepsSeq / stepsBin << " —Ä–∞–∑" << endl;
 
     return 0;
 }

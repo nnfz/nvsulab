@@ -39,12 +39,12 @@ public:
             newNode->prev = tail;
             tail = newNode;
         }
-        cout << "ВУЗ добавлен." << endl;
+        cout << "Р’РЈР— РґРѕР±Р°РІР»РµРЅ." << endl;
     }
 
     void deleteNode(const char* name) {
         if (head == nullptr) {
-            cout << "Список пуст." << endl;
+            cout << "РЎРїРёСЃРѕРє РїСѓСЃС‚." << endl;
             return;
         }
 
@@ -54,7 +54,7 @@ public:
         }
 
         if (current == nullptr) {
-            cout << "ВУЗ не найден." << endl;
+            cout << "Р’РЈР— РЅРµ РЅР°Р№РґРµРЅ." << endl;
             return;
         }
 
@@ -74,18 +74,18 @@ public:
         }
 
         delete current;
-        cout << "ВУЗ удален." << endl;
+        cout << "Р’РЈР— СѓРґР°Р»РµРЅ." << endl;
     }
 
     void displayForward() {
         if (head == nullptr) {
-            cout << "Список пуст." << endl;
+            cout << "РЎРїРёСЃРѕРє РїСѓСЃС‚." << endl;
             return;
         }
 
         University* current = head;
         int count = 1;
-        cout << "\n=== Список ВУЗов (слева направо) ===" << endl;
+        cout << "\n=== РЎРїРёСЃРѕРє Р’РЈР—РѕРІ (СЃР»РµРІР° РЅР°РїСЂР°РІРѕ) ===" << endl;
         while (current != nullptr) {
             cout << count++ << ". " << current->name << endl;
             current = current->next;
@@ -94,13 +94,13 @@ public:
 
     void displayBackward() {
         if (tail == nullptr) {
-            cout << "Список пуст." << endl;
+            cout << "РЎРїРёСЃРѕРє РїСѓСЃС‚." << endl;
             return;
         }
 
         University* current = tail;
         int count = 1;
-        cout << "\n=== Список ВУЗов (справа налево) ===" << endl;
+        cout << "\n=== РЎРїРёСЃРѕРє Р’РЈР—РѕРІ (СЃРїСЂР°РІР° РЅР°Р»РµРІРѕ) ===" << endl;
         while (current != nullptr) {
             cout << count++ << ". " << current->name << endl;
             current = current->prev;
@@ -120,37 +120,37 @@ public:
 };
 
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
     DoubleLinkedList list;
     int choice;
     char name[100];
 
-    list.addNode("Югорский государственный университет");
-    list.addNode("Сургутский государственный университет");
-    list.addNode("Нижневартовский государственный университет");
+    list.addNode("Р®РіРѕСЂСЃРєРёР№ РіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ СѓРЅРёРІРµСЂСЃРёС‚РµС‚");
+    list.addNode("РЎСѓСЂРіСѓС‚СЃРєРёР№ РіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ СѓРЅРёРІРµСЂСЃРёС‚РµС‚");
+    list.addNode("РќРёР¶РЅРµРІР°СЂС‚РѕРІСЃРєРёР№ РіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ СѓРЅРёРІРµСЂСЃРёС‚РµС‚");
 
     do {
-        cout << "\n=== МЕНЮ ===" << endl;
-        cout << "1. Добавить ВУЗ" << endl;
-        cout << "2. Удалить ВУЗ" << endl;
-        cout << "3. Просмотр списка (слева направо)" << endl;
-        cout << "4. Просмотр списка (справа налево)" << endl;
-        cout << "5. Проверить принадлежность" << endl;
-        cout << "0. Выход" << endl;
-        cout << "Выберите действие: ";
+        cout << "\n=== РњР•РќР® ===" << endl;
+        cout << "1. Р”РѕР±Р°РІРёС‚СЊ Р’РЈР—" << endl;
+        cout << "2. РЈРґР°Р»РёС‚СЊ Р’РЈР—" << endl;
+        cout << "3. РџСЂРѕСЃРјРѕС‚СЂ СЃРїРёСЃРєР° (СЃР»РµРІР° РЅР°РїСЂР°РІРѕ)" << endl;
+        cout << "4. РџСЂРѕСЃРјРѕС‚СЂ СЃРїРёСЃРєР° (СЃРїСЂР°РІР° РЅР°Р»РµРІРѕ)" << endl;
+        cout << "5. РџСЂРѕРІРµСЂРёС‚СЊ РїСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ" << endl;
+        cout << "0. Р’С‹С…РѕРґ" << endl;
+        cout << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ";
         cin >> choice;
         cin.ignore();
 
         switch (choice) {
             case 1:
-                cout << "Введите название ВУЗа: ";
+                cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ Р’РЈР—Р°: ";
                 cin.getline(name, 100);
                 list.addNode(name);
                 break;
             case 2:
-                cout << "Введите название ВУЗа для удаления: ";
+                cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ Р’РЈР—Р° РґР»СЏ СѓРґР°Р»РµРЅРёСЏ: ";
                 cin.getline(name, 100);
                 list.deleteNode(name);
                 break;
@@ -161,19 +161,19 @@ int main() {
                 list.displayBackward();
                 break;
             case 5:
-                cout << "Введите название ВУЗа для проверки: ";
+                cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ Р’РЈР—Р° РґР»СЏ РїСЂРѕРІРµСЂРєРё: ";
                 cin.getline(name, 100);
                 if (list.contains(name)) {
-                    cout << "ВУЗ найден в списке." << endl;
+                    cout << "Р’РЈР— РЅР°Р№РґРµРЅ РІ СЃРїРёСЃРєРµ." << endl;
                 } else {
-                    cout << "ВУЗ не найден в списке." << endl;
+                    cout << "Р’РЈР— РЅРµ РЅР°Р№РґРµРЅ РІ СЃРїРёСЃРєРµ." << endl;
                 }
                 break;
             case 0:
-                cout << "Выход..." << endl;
+                cout << "Р’С‹С…РѕРґ..." << endl;
                 break;
             default:
-                cout << "Неверный выбор!" << endl;
+                cout << "РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ!" << endl;
         }
     } while (choice != 0);
 

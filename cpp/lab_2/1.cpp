@@ -4,6 +4,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <chrono>
+#include <windows.h>
 
 using namespace std;
 using namespace chrono;
@@ -15,7 +16,7 @@ void generateFile(const string& filename, int count) {
         file << rand() % 100000 << endl;
     }
     file.close();
-    cout << "Ôàéë " << filename << " ñîçäàí ñ " << count << " ÷èñëàìè." << endl;
+    cout << "Ð¤Ð°Ð¹Ð» " << filename << " ÑÐ¾Ð·Ð´Ð°Ð½ Ñ " << count << " Ñ‡Ð¸ÑÐ»Ð°Ð¼Ð¸." << endl;
 }
 
 vector<int> readFile(const string& filename) {
@@ -62,7 +63,8 @@ void insertionSort(vector<int>& arr) {
 }
 
 int main() {
-    setlocale(LC_ALL, "Russian");
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
     string inputFile = "numbers.txt";
     string outputBubble = "sorted_bubble.txt";
@@ -70,9 +72,9 @@ int main() {
     int count = 10000;
 
     int choice;
-    cout << "1. Ñãåíåðèðîâàòü ôàéë ñ " << count << " ÷èñëàìè" << endl;
-    cout << "2. Ñîðòèðîâàòü ñóùåñòâóþùèé ôàéë" << endl;
-    cout << "Âûáåðèòå äåéñòâèå: ";
+    cout << "1. Ð¡Ð³ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ñ„Ð°Ð¹Ð» Ñ " << count << " Ñ‡Ð¸ÑÐ»Ð°Ð¼Ð¸" << endl;
+    cout << "2. Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÑŽÑ‰Ð¸Ð¹ Ñ„Ð°Ð¹Ð»" << endl;
+    cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ: ";
     cin >> choice;
 
     if (choice == 1) {
@@ -80,7 +82,7 @@ int main() {
     }
 
     vector<int> data = readFile(inputFile);
-    cout << "Ïðî÷èòàíî " << data.size() << " ÷èñåë èç ôàéëà." << endl;
+    cout << "ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ð½Ð¾ " << data.size() << " Ñ‡Ð¸ÑÐµÐ» Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°." << endl;
 
     vector<int> dataBubble = data;
     auto start = high_resolution_clock::now();
@@ -88,9 +90,9 @@ int main() {
     auto end = high_resolution_clock::now();
     auto durationBubble = duration_cast<milliseconds>(end - start);
     writeFile(outputBubble, dataBubble);
-    cout << "\nÎáìåííàÿ ñîðòèðîâêà:" << endl;
-    cout << "Âðåìÿ: " << durationBubble.count() << " ìñ" << endl;
-    cout << "Ðåçóëüòàò ñîõðàíåí â " << outputBubble << endl;
+    cout << "\nÐžÐ±Ð¼ÐµÐ½Ð½Ð°Ñ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ°:" << endl;
+    cout << "Ð’Ñ€ÐµÐ¼Ñ: " << durationBubble.count() << " Ð¼Ñ" << endl;
+    cout << "Ð ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½ Ð² " << outputBubble << endl;
 
     vector<int> dataInsertion = data;
     start = high_resolution_clock::now();
@@ -98,9 +100,9 @@ int main() {
     end = high_resolution_clock::now();
     auto durationInsertion = duration_cast<milliseconds>(end - start);
     writeFile(outputInsertion, dataInsertion);
-    cout << "\nÑîðòèðîâêà âñòàâêàìè:" << endl;
-    cout << "Âðåìÿ: " << durationInsertion.count() << " ìñ" << endl;
-    cout << "Ðåçóëüòàò ñîõðàíåí â " << outputInsertion << endl;
+    cout << "\nÐ¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ° Ð²ÑÑ‚Ð°Ð²ÐºÐ°Ð¼Ð¸:" << endl;
+    cout << "Ð’Ñ€ÐµÐ¼Ñ: " << durationInsertion.count() << " Ð¼Ñ" << endl;
+    cout << "Ð ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½ Ð² " << outputInsertion << endl;
 
     return 0;
 }

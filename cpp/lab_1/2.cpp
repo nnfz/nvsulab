@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdexcept>
+#include <windows.h>
 
 using namespace std;
 
@@ -15,24 +16,24 @@ public:
 
     void push(double value) {
         if (topIndex >= MAX_SIZE - 1) {
-            throw overflow_error("Стек переполнен!");
+            throw overflow_error("РЎС‚РµРє РїРµСЂРµРїРѕР»РЅРµРЅ!");
         }
         data[++topIndex] = value;
-        cout << "Элемент " << value << " добавлен в стек." << endl;
+        cout << "Р­Р»РµРјРµРЅС‚ " << value << " РґРѕР±Р°РІР»РµРЅ РІ СЃС‚РµРє." << endl;
     }
 
     double pop() {
         if (isEmpty()) {
-            throw underflow_error("Стек пуст! Невозможно удалить элемент.");
+            throw underflow_error("РЎС‚РµРє РїСѓСЃС‚! РќРµРІРѕР·РјРѕР¶РЅРѕ СѓРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚.");
         }
         double value = data[topIndex--];
-        cout << "Элемент " << value << " удален из стека." << endl;
+        cout << "Р­Р»РµРјРµРЅС‚ " << value << " СѓРґР°Р»РµРЅ РёР· СЃС‚РµРєР°." << endl;
         return value;
     }
 
     double top() const {
         if (isEmpty()) {
-            throw underflow_error("Стек пуст! Нет вершины.");
+            throw underflow_error("РЎС‚РµРє РїСѓСЃС‚! РќРµС‚ РІРµСЂС€РёРЅС‹.");
         }
         return data[topIndex];
     }
@@ -51,10 +52,10 @@ public:
 
     void display() const {
         if (isEmpty()) {
-            cout << "Стек пуст!" << endl;
+            cout << "РЎС‚РµРє РїСѓСЃС‚!" << endl;
             return;
         }
-        cout << "Содержимое стека (сверху вниз): ";
+        cout << "РЎРѕРґРµСЂР¶РёРјРѕРµ СЃС‚РµРєР° (СЃРІРµСЂС…Сѓ РІРЅРёР·): ";
         for (int i = topIndex; i >= 0; i--) {
             cout << data[i] << " ";
         }
@@ -63,27 +64,28 @@ public:
 };
 
 int main() {
-    setlocale(LC_ALL, "Russian");
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
     Stack stack;
     int choice;
     double value;
 
     do {
-        cout << "\n=== МЕНЮ СТЕКА ===" << endl;
-        cout << "1. Добавить элемент (push)" << endl;
-        cout << "2. Удалить элемент (pop)" << endl;
-        cout << "3. Показать вершину стека (top)" << endl;
-        cout << "4. Показать содержимое стека" << endl;
-        cout << "5. Проверить размер стека" << endl;
-        cout << "0. Выход" << endl;
-        cout << "Выберите действие: ";
+        cout << "\n=== РњР•РќР® РЎРўР•РљРђ ===" << endl;
+        cout << "1. Р”РѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚ (push)" << endl;
+        cout << "2. РЈРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚ (pop)" << endl;
+        cout << "3. РџРѕРєР°Р·Р°С‚СЊ РІРµСЂС€РёРЅСѓ СЃС‚РµРєР° (top)" << endl;
+        cout << "4. РџРѕРєР°Р·Р°С‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ СЃС‚РµРєР°" << endl;
+        cout << "5. РџСЂРѕРІРµСЂРёС‚СЊ СЂР°Р·РјРµСЂ СЃС‚РµРєР°" << endl;
+        cout << "0. Р’С‹С…РѕРґ" << endl;
+        cout << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ";
         cin >> choice;
 
         try {
             switch (choice) {
                 case 1:
-                    cout << "Введите вещественное число: ";
+                    cout << "Р’РІРµРґРёС‚Рµ РІРµС‰РµСЃС‚РІРµРЅРЅРѕРµ С‡РёСЃР»Рѕ: ";
                     cin >> value;
                     stack.push(value);
                     break;
@@ -93,7 +95,7 @@ int main() {
                     break;
 
                 case 3:
-                    cout << "Вершина стека: " << stack.top() << endl;
+                    cout << "Р’РµСЂС€РёРЅР° СЃС‚РµРєР°: " << stack.top() << endl;
                     break;
 
                 case 4:
@@ -101,18 +103,18 @@ int main() {
                     break;
 
                 case 5:
-                    cout << "Размер стека: " << stack.size() << endl;
+                    cout << "Р Р°Р·РјРµСЂ СЃС‚РµРєР°: " << stack.size() << endl;
                     break;
 
                 case 0:
-                    cout << "Выход из программы..." << endl;
+                    cout << "Р’С‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹..." << endl;
                     break;
 
                 default:
-                    cout << "Неверный выбор! Попробуйте снова." << endl;
+                    cout << "РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ! РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°." << endl;
             }
         } catch (const exception& e) {
-            cout << "Ошибка: " << e.what() << endl;
+            cout << "РћС€РёР±РєР°: " << e.what() << endl;
         }
 
     } while (choice != 0);

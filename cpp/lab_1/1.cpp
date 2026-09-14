@@ -17,44 +17,44 @@ struct Student {
 void addStudent(const string& filename) {
     Student student;
 
-    cout << "Ââåäèòå ÔÈÎ: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¤Ð˜Ðž: ";
     cin.ignore();
     cin.getline(student.fio, 100);
 
-    cout << "Ââåäèòå äàòó ðîæäåíèÿ (ÄÄ.ÌÌ.ÃÃÃÃ): ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð°Ñ‚Ñƒ Ñ€Ð¾Ð¶Ð´ÐµÐ½Ð¸Ñ (Ð”Ð”.ÐœÐœ.Ð“Ð“Ð“Ð“): ";
     cin.getline(student.birthDate, 20);
 
     int course;
     unsigned short group;
-    cout << "Ââåäèòå êóðñ (1-6): ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÑƒÑ€Ñ (1-6): ";
     cin >> course;
     student.course = static_cast<unsigned char>(course);
 
-    cout << "Ââåäèòå ãðóïïó: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð³Ñ€ÑƒÐ¿Ð¿Ñƒ: ";
     cin >> group;
     student.group = group;
 
     ofstream file(filename, ios::binary | ios::app);
     if (!file) {
-        cout << "Îøèáêà îòêðûòèÿ ôàéëà!" << endl;
+        cout << "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ñ„Ð°Ð¹Ð»Ð°!" << endl;
         return;
     }
 
     file.write(reinterpret_cast<char*>(&student), sizeof(Student));
     file.close();
 
-    cout << "Ñòóäåíò óñïåøíî äîáàâëåí!" << endl;
+    cout << "Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½!" << endl;
 }
 
 void deleteStudent(const string& filename) {
     string fioToDelete;
-    cout << "Ââåäèòå ÔÈÎ ñòóäåíòà äëÿ óäàëåíèÿ: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¤Ð˜Ðž ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð° Ð´Ð»Ñ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ: ";
     cin.ignore();
     getline(cin, fioToDelete);
 
     ifstream fileIn(filename, ios::binary);
     if (!fileIn) {
-        cout << "Ôàéë íå íàéäåí!" << endl;
+        cout << "Ð¤Ð°Ð¹Ð» Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½!" << endl;
         return;
     }
 
@@ -72,7 +72,7 @@ void deleteStudent(const string& filename) {
     fileIn.close();
 
     if (!found) {
-        cout << "Ñòóäåíò ñ òàêèì ÔÈÎ íå íàéäåí!" << endl;
+        cout << "Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚ Ñ Ñ‚Ð°ÐºÐ¸Ð¼ Ð¤Ð˜Ðž Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½!" << endl;
         return;
     }
 
@@ -82,18 +82,18 @@ void deleteStudent(const string& filename) {
     }
     fileOut.close();
 
-    cout << "Ñòóäåíò óñïåøíî óäàëåí!" << endl;
+    cout << "Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑƒÐ´Ð°Ð»ÐµÐ½!" << endl;
 }
 
 void checkStudent(const string& filename) {
     string fioToCheck;
-    cout << "Ââåäèòå ÔÈÎ ñòóäåíòà äëÿ ïðîâåðêè: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¤Ð˜Ðž ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð° Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸: ";
     cin.ignore();
     getline(cin, fioToCheck);
 
     ifstream file(filename, ios::binary);
     if (!file) {
-        cout << "Ôàéë íå íàéäåí!" << endl;
+        cout << "Ð¤Ð°Ð¹Ð» Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½!" << endl;
         return;
     }
 
@@ -103,65 +103,65 @@ void checkStudent(const string& filename) {
     while (file.read(reinterpret_cast<char*>(&student), sizeof(Student))) {
         if (strcmp(student.fio, fioToCheck.c_str()) == 0) {
             found = true;
-            cout << "\nÑòóäåíò íàéäåí:" << endl;
-            cout << "ÔÈÎ: " << student.fio << endl;
-            cout << "Äàòà ðîæäåíèÿ: " << student.birthDate << endl;
-            cout << "Êóðñ: " << (int)student.course << endl;
-            cout << "Ãðóïïà: " << student.group << endl;
+            cout << "\nÐ¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚ Ð½Ð°Ð¹Ð´ÐµÐ½:" << endl;
+            cout << "Ð¤Ð˜Ðž: " << student.fio << endl;
+            cout << "Ð”Ð°Ñ‚Ð° Ñ€Ð¾Ð¶Ð´ÐµÐ½Ð¸Ñ: " << student.birthDate << endl;
+            cout << "ÐšÑƒÑ€Ñ: " << (int)student.course << endl;
+            cout << "Ð“Ñ€ÑƒÐ¿Ð¿Ð°: " << student.group << endl;
             break;
         }
     }
     file.close();
 
     if (!found) {
-        cout << "Ñòóäåíò ñ òàêèì ÔÈÎ íå íàéäåí!" << endl;
+        cout << "Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚ Ñ Ñ‚Ð°ÐºÐ¸Ð¼ Ð¤Ð˜Ðž Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½!" << endl;
     }
 }
 
 void displayAllStudents(const string& filename) {
     ifstream file(filename, ios::binary);
     if (!file) {
-        cout << "Ôàéë íå íàéäåí èëè ïóñò!" << endl;
+        cout << "Ð¤Ð°Ð¹Ð» Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½ Ð¸Ð»Ð¸ Ð¿ÑƒÑÑ‚!" << endl;
         return;
     }
 
     Student student;
     int count = 0;
 
-    cout << "\n=== Ñïèñîê âñåõ ñòóäåíòîâ ===" << endl;
+    cout << "\n=== Ð¡Ð¿Ð¸ÑÐ¾Ðº Ð²ÑÐµÑ… ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð¾Ð² ===" << endl;
     while (file.read(reinterpret_cast<char*>(&student), sizeof(Student))) {
         count++;
-        cout << "\nÑòóäåíò #" << count << ":" << endl;
-        cout << "ÔÈÎ: " << student.fio << endl;
-        cout << "Äàòà ðîæäåíèÿ: " << student.birthDate << endl;
-        cout << "Êóðñ: " << (int)student.course << endl;
-        cout << "Ãðóïïà: " << student.group << endl;
+        cout << "\nÐ¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚ #" << count << ":" << endl;
+        cout << "Ð¤Ð˜Ðž: " << student.fio << endl;
+        cout << "Ð”Ð°Ñ‚Ð° Ñ€Ð¾Ð¶Ð´ÐµÐ½Ð¸Ñ: " << student.birthDate << endl;
+        cout << "ÐšÑƒÑ€Ñ: " << (int)student.course << endl;
+        cout << "Ð“Ñ€ÑƒÐ¿Ð¿Ð°: " << student.group << endl;
         cout << "------------------------" << endl;
     }
     file.close();
 
     if (count == 0) {
-        cout << "Ôàéë ïóñò!" << endl;
+        cout << "Ð¤Ð°Ð¹Ð» Ð¿ÑƒÑÑ‚!" << endl;
     } else {
-        cout << "Âñåãî ñòóäåíòîâ: " << count << endl;
+        cout << "Ð’ÑÐµÐ³Ð¾ ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð¾Ð²: " << count << endl;
     }
 }
 
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
     string filename = "students.dat";
     int choice;
 
     do {
-        cout << "\n=== ÌÅÍÞ ===" << endl;
-        cout << "1. Äîáàâèòü ñòóäåíòà" << endl;
-        cout << "2. Óäàëèòü ñòóäåíòà" << endl;
-        cout << "3. Ïðîâåðèòü ïðèíàäëåæíîñòü ñòóäåíòà" << endl;
-        cout << "4. Âûâåñòè âñåõ ñòóäåíòîâ" << endl;
-        cout << "0. Âûõîä" << endl;
-        cout << "Âûáåðèòå äåéñòâèå: ";
+        cout << "\n=== ÐœÐ•ÐÐ® ===" << endl;
+        cout << "1. Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð°" << endl;
+        cout << "2. Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð°" << endl;
+        cout << "3. ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ð¿Ñ€Ð¸Ð½Ð°Ð´Ð»ÐµÐ¶Ð½Ð¾ÑÑ‚ÑŒ ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð°" << endl;
+        cout << "4. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð²ÑÐµÑ… ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð¾Ð²" << endl;
+        cout << "0. Ð’Ñ‹Ñ…Ð¾Ð´" << endl;
+        cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ: ";
         cin >> choice;
 
         switch (choice) {
@@ -178,10 +178,10 @@ int main() {
                 displayAllStudents(filename);
                 break;
             case 0:
-                cout << "Âûõîä èç ïðîãðàììû..." << endl;
+                cout << "Ð’Ñ‹Ñ…Ð¾Ð´ Ð¸Ð· Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹..." << endl;
                 break;
             default:
-                cout << "Íåâåðíûé âûáîð! Ïîïðîáóéòå ñíîâà." << endl;
+                cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€! ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÑÐ½Ð¾Ð²Ð°." << endl;
         }
     } while (choice != 0);
 

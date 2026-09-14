@@ -3,6 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <ctime>
+#include <windows.h>
 
 using namespace std;
 
@@ -80,18 +81,20 @@ int binarySearch(Person arr[], int size, const char* surname, int& steps) {
 }
 
 void displayPerson(const Person& p) {
-    cout << "Ôàìèëèÿ: " << p.surname << endl;
-    cout << "Äàòà ðîæäåíèÿ: " << p.birthDate << endl;
-    cout << "Àäðåñ: " << p.address << endl;
-    cout << "ÂÓÇ: " << p.university << endl;
+    cout << "Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ: " << p.surname << endl;
+    cout << "Ð”Ð°Ñ‚Ð° Ñ€Ð¾Ð¶Ð´ÐµÐ½Ð¸Ñ: " << p.birthDate << endl;
+    cout << "ÐÐ´Ñ€ÐµÑ: " << p.address << endl;
+    cout << "Ð’Ð£Ð—: " << p.university << endl;
 }
 
 int main() {
-    setlocale(LC_ALL, "Russian");
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
+
     srand(time(0));
 
     int n;
-    cout << "Ââåäèòå êîëè÷åñòâî çàïèñåé: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð·Ð°Ð¿Ð¸ÑÐµÐ¹: ";
     cin >> n;
 
     Person* people = new Person[n];
@@ -100,19 +103,19 @@ int main() {
         generatePerson(people[i]);
     }
 
-    cout << "Ñãåíåðèðîâàíî " << n << " çàïèñåé." << endl;
-    cout << "\n5 ñëó÷àéíûõ çàïèñåé:" << endl;
+    cout << "Ð¡Ð³ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾ " << n << " Ð·Ð°Ð¿Ð¸ÑÐµÐ¹." << endl;
+    cout << "\n5 ÑÐ»ÑƒÑ‡Ð°Ð¹Ð½Ñ‹Ñ… Ð·Ð°Ð¿Ð¸ÑÐµÐ¹:" << endl;
     for (int i = 0; i < min(5, n); i++) {
         int randomIndex = rand() % n;
-        cout << "\n--- Çàïèñü #" << randomIndex << " ---" << endl;
+        cout << "\n--- Ð—Ð°Ð¿Ð¸ÑÑŒ #" << randomIndex << " ---" << endl;
         displayPerson(people[randomIndex]);
     }
 
     sortBySurname(people, n);
-    cout << "\nÌàññèâ îòñîðòèðîâàí ïî ôàìèëèÿì." << endl;
+    cout << "\nÐœÐ°ÑÑÐ¸Ð² Ð¾Ñ‚ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½ Ð¿Ð¾ Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÑÐ¼." << endl;
 
     char searchSurname[50];
-    cout << "\nÂâåäèòå ôàìèëèþ äëÿ ïîèñêà (èëè îäíó èç ñãåíåðèðîâàííûõ): ";
+    cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÑŽ Ð´Ð»Ñ Ð¿Ð¾Ð¸ÑÐºÐ° (Ð¸Ð»Ð¸ Ð¾Ð´Ð½Ñƒ Ð¸Ð· ÑÐ³ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ñ…): ";
     cin >> searchSurname;
 
     int stepsSeq, stepsBin;
@@ -120,26 +123,26 @@ int main() {
     int resultSeq = sequentialSearch(people, n, searchSurname, stepsSeq);
     int resultBin = binarySearch(people, n, searchSurname, stepsBin);
 
-    cout << "\n=== Ïîñëåäîâàòåëüíûé ïîèñê ===" << endl;
+    cout << "\n=== ÐŸÐ¾ÑÐ»ÐµÐ´Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¹ Ð¿Ð¾Ð¸ÑÐº ===" << endl;
     if (resultSeq != -1) {
-        cout << "Çàïèñü íàéäåíà íà ïîçèöèè: " << resultSeq << endl;
+        cout << "Ð—Ð°Ð¿Ð¸ÑÑŒ Ð½Ð°Ð¹Ð´ÐµÐ½Ð° Ð½Ð° Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸: " << resultSeq << endl;
         displayPerson(people[resultSeq]);
     } else {
-        cout << "Çàïèñü íå íàéäåíà" << endl;
+        cout << "Ð—Ð°Ð¿Ð¸ÑÑŒ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" << endl;
     }
-    cout << "Êîëè÷åñòâî øàãîâ: " << stepsSeq << endl;
+    cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑˆÐ°Ð³Ð¾Ð²: " << stepsSeq << endl;
 
-    cout << "\n=== Áèíàðíûé ïîèñê ===" << endl;
+    cout << "\n=== Ð‘Ð¸Ð½Ð°Ñ€Ð½Ñ‹Ð¹ Ð¿Ð¾Ð¸ÑÐº ===" << endl;
     if (resultBin != -1) {
-        cout << "Çàïèñü íàéäåíà íà ïîçèöèè: " << resultBin << endl;
+        cout << "Ð—Ð°Ð¿Ð¸ÑÑŒ Ð½Ð°Ð¹Ð´ÐµÐ½Ð° Ð½Ð° Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸: " << resultBin << endl;
         displayPerson(people[resultBin]);
     } else {
-        cout << "Çàïèñü íå íàéäåíà" << endl;
+        cout << "Ð—Ð°Ð¿Ð¸ÑÑŒ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" << endl;
     }
-    cout << "Êîëè÷åñòâî øàãîâ: " << stepsBin << endl;
+    cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑˆÐ°Ð³Ð¾Ð²: " << stepsBin << endl;
 
-    cout << "\n=== Ñðàâíåíèå ===" << endl;
-    cout << "Ðàçíèöà â êîëè÷åñòâå øàãîâ: " << abs(stepsSeq - stepsBin) << endl;
+    cout << "\n=== Ð¡Ñ€Ð°Ð²Ð½ÐµÐ½Ð¸Ðµ ===" << endl;
+    cout << "Ð Ð°Ð·Ð½Ð¸Ñ†Ð° Ð² ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ðµ ÑˆÐ°Ð³Ð¾Ð²: " << abs(stepsSeq - stepsBin) << endl;
 
     delete[] people;
     return 0;

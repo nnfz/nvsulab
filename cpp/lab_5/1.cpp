@@ -12,11 +12,11 @@ int hashFunction(const char* fio) {
 }
 
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
-    unsigned char minChar = '¿';
-    unsigned char maxChar = 'ﬂ';
+    unsigned char minChar = '–ê';
+    unsigned char maxChar = '–Ø';
 
     int minHash = minChar * 3;
     int maxHash = maxChar * 3;
@@ -47,18 +47,18 @@ int main() {
         }
     }
 
-    cout << "ord('¿') = " << (int)minChar << endl;
-    cout << "ord('ﬂ') = " << (int)maxChar << endl;
-    cout << "–‡ÁÏÂ ‡ÎÙ‡‚ËÚ‡: " << alphabetSize << endl;
-    cout << "¬ÒÂ„Ó ÍÓÏ·ËÌ‡ˆËÈ: " << totalCombinations << endl;
-    cout << "”ÌËÍ‡Î¸Ì˚ı ıÂ¯ÂÈ: " << uniqueHashes.size() << endl;
-    cout << "—Â‰ÌËÈ ÍÓ˝ÙÙËˆËÂÌÚ ÍÓÎÎËÁËÈ: " << (float)totalCombinations / uniqueHashes.size() << endl;
-    cout << "Ã‡ÍÒËÏÛÏ ÍÓÎÎËÁËÈ Ì‡ Ó‰ËÌ ıÂ¯: " << maxCollisions << endl;
+    cout << "Word('–ê') = " << (int)minChar << endl;
+    cout << "Word('–Ø') = " << (int)maxChar << endl;
+    cout << "–†–∞–∑–º–µ—Ä –∞–ª—Ñ–∞–≤–∏—Ç–∞: " << alphabetSize << endl;
+    cout << "–í—Å–µ–≥–æ –∫–æ–º–±–∏–Ω–∞—Ü–∏–π: " << totalCombinations << endl;
+    cout << "–£–Ω–∏–∫–∞–ª—å–Ω—ã—Ö —Ö–µ—à–µ–π: " << uniqueHashes.size() << endl;
+    cout << "–°—Ä–µ–¥–Ω–∏–π –∫–æ—ç—Ñ—Ñ–∏—Ü–∏–µ–Ω—Ç –∫–æ–ª–ª–∏–∑–∏–π: " << (float)totalCombinations / uniqueHashes.size() << endl;
+    cout << "–ú–∞–∫—Å–∏–º—É–º –∫–æ–ª–ª–∏–∑–∏–π –Ω–∞ –æ–¥–∏–Ω —Ö–µ—à: " << maxCollisions << endl;
 
-    cout << "\nœËÏÂ˚:" << endl;
-    cout << "¿¡¬ -> " << hashFunction("¿¡¬") << endl;
-    cout << "¿¬¡ -> " << hashFunction("¿¬¡") << endl;
-    cout << "¡¿¬ -> " << hashFunction("¡¿¬") << endl;
+    cout << "\n–ü—Ä–∏–º–µ—Ä—ã:" << endl;
+    cout << "–ê–ë–í -> " << hashFunction("–ê–ë–í") << endl;
+    cout << "–ê–í–ë -> " << hashFunction("–ê–í–ë") << endl;
+    cout << "–ë–ê–í -> " << hashFunction("–ë–ê–í") << endl;
 
     return 0;
 }

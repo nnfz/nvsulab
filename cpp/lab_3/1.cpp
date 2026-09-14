@@ -42,12 +42,12 @@ public:
             }
             current->next = newNode;
         }
-        cout << "Ñòóäåíò äîáàâëåí." << endl;
+        cout << "Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½." << endl;
     }
 
     void deleteNode(const char* surname) {
         if (head == nullptr) {
-            cout << "Ñïèñîê ïóñò." << endl;
+            cout << "Ð¡Ð¿Ð¸ÑÐ¾Ðº Ð¿ÑƒÑÑ‚." << endl;
             return;
         }
 
@@ -55,7 +55,7 @@ public:
             Student* temp = head;
             head = head->next;
             delete temp;
-            cout << "Ñòóäåíò óäàëåí." << endl;
+            cout << "Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚ ÑƒÐ´Ð°Ð»ÐµÐ½." << endl;
             return;
         }
 
@@ -65,28 +65,28 @@ public:
         }
 
         if (current->next == nullptr) {
-            cout << "Ñòóäåíò íå íàéäåí." << endl;
+            cout << "Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½." << endl;
         } else {
             Student* temp = current->next;
             current->next = temp->next;
             delete temp;
-            cout << "Ñòóäåíò óäàëåí." << endl;
+            cout << "Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚ ÑƒÐ´Ð°Ð»ÐµÐ½." << endl;
         }
     }
 
     void display() {
         if (head == nullptr) {
-            cout << "Ñïèñîê ïóñò." << endl;
+            cout << "Ð¡Ð¿Ð¸ÑÐ¾Ðº Ð¿ÑƒÑÑ‚." << endl;
             return;
         }
 
         Student* current = head;
         int count = 1;
-        cout << "\n=== Ñïèñîê ñòóäåíòîâ ===" << endl;
+        cout << "\n=== Ð¡Ð¿Ð¸ÑÐ¾Ðº ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð¾Ð² ===" << endl;
         while (current != nullptr) {
-            cout << count++ << ". Ôàìèëèÿ: " << current->surname
-                 << ", Êóðñ: " << current->course
-                 << ", Ãðóïïà: " << current->group << endl;
+            cout << count++ << ". Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ: " << current->surname
+                 << ", ÐšÑƒÑ€Ñ: " << current->course
+                 << ", Ð“Ñ€ÑƒÐ¿Ð¿Ð°: " << current->group << endl;
             current = current->next;
         }
     }
@@ -104,8 +104,8 @@ public:
 };
 
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
     SingleLinkedList list;
     int choice;
@@ -113,29 +113,29 @@ int main() {
     int course, group;
 
     do {
-        cout << "\n=== ÌÅÍÞ ===" << endl;
-        cout << "1. Äîáàâèòü ñòóäåíòà" << endl;
-        cout << "2. Óäàëèòü ñòóäåíòà" << endl;
-        cout << "3. Ïðîñìîòð ñïèñêà" << endl;
-        cout << "4. Ïðîâåðèòü ïðèíàäëåæíîñòü" << endl;
-        cout << "0. Âûõîä" << endl;
-        cout << "Âûáåðèòå äåéñòâèå: ";
+        cout << "\n=== ÐœÐ•ÐÐ® ===" << endl;
+        cout << "1. Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð°" << endl;
+        cout << "2. Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð°" << endl;
+        cout << "3. ÐŸÑ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ ÑÐ¿Ð¸ÑÐºÐ°" << endl;
+        cout << "4. ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ð¿Ñ€Ð¸Ð½Ð°Ð´Ð»ÐµÐ¶Ð½Ð¾ÑÑ‚ÑŒ" << endl;
+        cout << "0. Ð’Ñ‹Ñ…Ð¾Ð´" << endl;
+        cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ: ";
         cin >> choice;
         cin.ignore();
 
         switch (choice) {
             case 1:
-                cout << "Ââåäèòå ôàìèëèþ: ";
+                cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÑŽ: ";
                 cin.getline(surname, 50);
-                cout << "Ââåäèòå êóðñ: ";
+                cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÑƒÑ€Ñ: ";
                 cin >> course;
-                cout << "Ââåäèòå ãðóïïó: ";
+                cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð³Ñ€ÑƒÐ¿Ð¿Ñƒ: ";
                 cin >> group;
                 cin.ignore();
                 list.addNode(surname, course, group);
                 break;
             case 2:
-                cout << "Ââåäèòå ôàìèëèþ äëÿ óäàëåíèÿ: ";
+                cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÑŽ Ð´Ð»Ñ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ: ";
                 cin.getline(surname, 50);
                 list.deleteNode(surname);
                 break;
@@ -143,19 +143,19 @@ int main() {
                 list.display();
                 break;
             case 4:
-                cout << "Ââåäèòå ôàìèëèþ äëÿ ïðîâåðêè: ";
+                cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÑŽ Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸: ";
                 cin.getline(surname, 50);
                 if (list.contains(surname)) {
-                    cout << "Ñòóäåíò íàéäåí â ñïèñêå." << endl;
+                    cout << "Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚ Ð½Ð°Ð¹Ð´ÐµÐ½ Ð² ÑÐ¿Ð¸ÑÐºÐµ." << endl;
                 } else {
-                    cout << "Ñòóäåíò íå íàéäåí â ñïèñêå." << endl;
+                    cout << "Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½ Ð² ÑÐ¿Ð¸ÑÐºÐµ." << endl;
                 }
                 break;
             case 0:
-                cout << "Âûõîä..." << endl;
+                cout << "Ð’Ñ‹Ñ…Ð¾Ð´..." << endl;
                 break;
             default:
-                cout << "Íåâåðíûé âûáîð!" << endl;
+                cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€!" << endl;
         }
     } while (choice != 0);
 

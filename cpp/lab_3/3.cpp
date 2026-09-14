@@ -27,27 +27,27 @@ public:
         strcpy(newNode->data, str);
         newNode->next = top;
         top = newNode;
-        cout << "Ñòðîêà äîáàâëåíà â ñòåê." << endl;
+        cout << "Ð¡Ñ‚Ñ€Ð¾ÐºÐ° Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð° Ð² ÑÑ‚ÐµÐº." << endl;
     }
 
     void pop() {
         if (isEmpty()) {
-            cout << "Ñòåê ïóñò!" << endl;
+            cout << "Ð¡Ñ‚ÐµÐº Ð¿ÑƒÑÑ‚!" << endl;
             return;
         }
 
         Node* temp = top;
-        cout << "Óäàëåíà ñòðîêà: " << top->data << endl;
+        cout << "Ð£Ð´Ð°Ð»ÐµÐ½Ð° ÑÑ‚Ñ€Ð¾ÐºÐ°: " << top->data << endl;
         top = top->next;
         delete temp;
     }
 
     void peek() {
         if (isEmpty()) {
-            cout << "Ñòåê ïóñò!" << endl;
+            cout << "Ð¡Ñ‚ÐµÐº Ð¿ÑƒÑÑ‚!" << endl;
             return;
         }
-        cout << "Âåðøèíà ñòåêà: " << top->data << endl;
+        cout << "Ð’ÐµÑ€ÑˆÐ¸Ð½Ð° ÑÑ‚ÐµÐºÐ°: " << top->data << endl;
     }
 
     bool isEmpty() {
@@ -56,13 +56,13 @@ public:
 
     void display() {
         if (isEmpty()) {
-            cout << "Ñòåê ïóñò!" << endl;
+            cout << "Ð¡Ñ‚ÐµÐº Ð¿ÑƒÑÑ‚!" << endl;
             return;
         }
 
         Node* current = top;
         int count = 1;
-        cout << "\n=== Ñîäåðæèìîå ñòåêà (ñâåðõó âíèç) ===" << endl;
+        cout << "\n=== Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ ÑÑ‚ÐµÐºÐ° (ÑÐ²ÐµÑ€Ñ…Ñƒ Ð²Ð½Ð¸Ð·) ===" << endl;
         while (current != nullptr) {
             cout << count++ << ". " << current->data << endl;
             current = current->next;
@@ -71,28 +71,28 @@ public:
 };
 
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
 
     StringStack stack;
     int choice;
     char str[100];
 
     do {
-        cout << "\n=== ÌÅÍÞ ===" << endl;
-        cout << "1. Push (äîáàâèòü ñòðîêó)" << endl;
-        cout << "2. Pop (óäàëèòü ñòðîêó)" << endl;
-        cout << "3. Peek (ïîñìîòðåòü âåðøèíó)" << endl;
-        cout << "4. Ïîêàçàòü âåñü ñòåê" << endl;
-        cout << "5. Ïðîâåðèòü ïóñòîòó" << endl;
-        cout << "0. Âûõîä" << endl;
-        cout << "Âûáåðèòå äåéñòâèå: ";
+        cout << "\n=== ÐœÐ•ÐÐ® ===" << endl;
+        cout << "1. Push (Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑÑ‚Ñ€Ð¾ÐºÑƒ)" << endl;
+        cout << "2. Pop (ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ ÑÑ‚Ñ€Ð¾ÐºÑƒ)" << endl;
+        cout << "3. Peek (Ð¿Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ÐµÑ‚ÑŒ Ð²ÐµÑ€ÑˆÐ¸Ð½Ñƒ)" << endl;
+        cout << "4. ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð²ÐµÑÑŒ ÑÑ‚ÐµÐº" << endl;
+        cout << "5. ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ð¿ÑƒÑÑ‚Ð¾Ñ‚Ñƒ" << endl;
+        cout << "0. Ð’Ñ‹Ñ…Ð¾Ð´" << endl;
+        cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ: ";
         cin >> choice;
         cin.ignore();
 
         switch (choice) {
             case 1:
-                cout << "Ââåäèòå ñòðîêó: ";
+                cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑ‚Ñ€Ð¾ÐºÑƒ: ";
                 cin.getline(str, 100);
                 stack.push(str);
                 break;
@@ -107,16 +107,16 @@ int main() {
                 break;
             case 5:
                 if (stack.isEmpty()) {
-                    cout << "Ñòåê ïóñò!" << endl;
+                    cout << "Ð¡Ñ‚ÐµÐº Ð¿ÑƒÑÑ‚!" << endl;
                 } else {
-                    cout << "Ñòåê íå ïóñò!" << endl;
+                    cout << "Ð¡Ñ‚ÐµÐº Ð½Ðµ Ð¿ÑƒÑÑ‚!" << endl;
                 }
                 break;
             case 0:
-                cout << "Âûõîä..." << endl;
+                cout << "Ð’Ñ‹Ñ…Ð¾Ð´..." << endl;
                 break;
             default:
-                cout << "Íåâåðíûé âûáîð!" << endl;
+                cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€!" << endl;
         }
     } while (choice != 0);
 
