@@ -10,16 +10,16 @@ const string TEMP_FILENAME = "Temp.dat";
 
 void writeToFile() {
     int num;
-    cout << "Ââåäèòå öåëûå ÷èñëà áîëüøå 1000 (0 äëÿ çàâåðøåíèÿ):" << endl;
+    cout << "˜˜˜˜˜˜˜ ˜˜˜˜˜ ˜˜˜˜˜ ˜˜˜˜˜˜ 1000 (0 ˜˜˜ ˜˜˜˜˜˜˜˜˜˜):" << endl;
 
     while (true) {
-        cout << "×èñëî: ";
+        cout << "˜˜˜˜˜: ";
         cin >> num;
 
         if (num == 0) break;
 
         if (num <= 1000) {
-            cout << "×èñëî äîëæíî áûòü áîëüøå 1000!" << endl;
+            cout << "˜˜˜˜˜ ˜˜˜˜˜˜ ˜˜˜˜ ˜˜˜˜˜˜ 1000!" << endl;
             continue;
         }
 
@@ -34,23 +34,23 @@ void writeToFile() {
         file.write(reinterpret_cast<char*>(&num), sizeof(int));
         file.close();
 
-        cout << "×èñëî çàïèñàíî íà ïîçèöèþ " << position << endl;
+        cout << "˜˜˜˜˜ ˜˜˜˜˜˜˜˜ ˜˜ ˜˜˜˜˜˜˜ " << position << endl;
     }
 }
 
 void displayFile() {
     ifstream file(FILENAME, ios::binary);
     if (!file) {
-        cout << "Ôàéë ïóñò èëè íå ñóùåñòâóåò!" << endl;
+        cout << "˜˜˜˜ ˜˜˜˜ ˜˜˜ ˜˜ ˜˜˜˜˜˜˜˜˜˜!" << endl;
         return;
     }
 
     int num;
     int position = 0;
-    cout << "\n=== Ñîäåðæèìîå ôàéëà ===" << endl;
+    cout << "\n=== ˜˜˜˜˜˜˜˜˜˜ ˜˜˜˜˜ ===" << endl;
 
     while (file.read(reinterpret_cast<char*>(&num), sizeof(int))) {
-        cout << "Ïîçèöèÿ " << position << ": " << num << endl;
+        cout << "˜˜˜˜˜˜˜ " << position << ": " << num << endl;
 
         position++;
     }
@@ -64,11 +64,11 @@ int main() {
     int choice;
 
     do {
-        cout << "\n=== ÌÅÍÞ ===" << endl;
-        cout << "1. Çàïèñü â ôàéë" << endl;
-        cout << "2. Âûâîä çàïèñåé íà ýêðàí" << endl;
-        cout << "0. Âûõîä" << endl;
-        cout << "Âûáåðèòå äåéñòâèå: ";
+        cout << "\n=== ˜˜˜˜ ===" << endl;
+        cout << "1. ˜˜˜˜˜˜ ˜ ˜˜˜˜" << endl;
+        cout << "2. ˜˜˜˜˜ ˜˜˜˜˜˜˜ ˜˜ ˜˜˜˜˜" << endl;
+        cout << "0. ˜˜˜˜˜" << endl;
+        cout << "˜˜˜˜˜˜˜˜ ˜˜˜˜˜˜˜˜: ";
         cin >> choice;
 
         switch (choice) {
@@ -79,10 +79,10 @@ int main() {
                 displayFile();
                 break;
             case 0:
-                cout << "Âûõîä..." << endl;
+                cout << "˜˜˜˜˜..." << endl;
                 break;
             default:
-                cout << "Íåâåðíûé âûáîð!" << endl;
+                cout << "˜˜˜˜˜˜˜˜ ˜˜˜˜˜!" << endl;
         }
     } while (choice != 0);
 
