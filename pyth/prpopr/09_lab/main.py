@@ -1,13 +1,12 @@
 from pathlib import Path
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent / "8_lab" / "folder"
+BASE_DIR = Path(__file__).resolve().parent.parent / "08_lab" / "folder"
 STUDENTS_FILE = BASE_DIR / "students.txt"
 RESULT_FILE = BASE_DIR / "students_new.txt"
 
 
 def count_files(directory: Path = BASE_DIR) -> int:
-    """Посчитать файлы в указанной папке и вывести результат."""
     if not directory.is_dir():
         print(f"Папка не найдена: {directory}")
         return 0
@@ -18,7 +17,6 @@ def count_files(directory: Path = BASE_DIR) -> int:
 
 
 def read_students(file_path: Path = STUDENTS_FILE) -> list[list[object]]:
-    """Считать students.txt в список списков."""
     students: list[list[object]] = []
     with file_path.open("r", encoding="utf-8") as file:
         for line in file:
@@ -32,7 +30,6 @@ def read_students(file_path: Path = STUDENTS_FILE) -> list[list[object]]:
 
 
 def sort_students_by_group(students: list[list[object]]) -> list[list[object]]:
-    """Отсортировать и показать студентов по номеру группы (вариант 3)."""
     students.sort(key=lambda student: str(student[3]))
     print("\nСтуденты, отсортированные по группе:")
     for student in students:
@@ -41,7 +38,6 @@ def sort_students_by_group(students: list[list[object]]) -> list[list[object]]:
 
 
 def increase_group_age(students: list[list[object]]) -> list[list[object]]:
-    """Увеличить возраст студентов выбранной группы на один год."""
     group = input("Введите номер группы: ").strip()
     changed = 0
     for student in students:
@@ -56,7 +52,6 @@ def increase_group_age(students: list[list[object]]) -> list[list[object]]:
 
 
 def save_students(students: list[list[object]], file_path: Path = RESULT_FILE) -> None:
-    """Сохранить текущие данные студентов в новый файл."""
     with file_path.open("w", encoding="utf-8") as file:
         file.write("№;ФИО;Возраст;Группа\n")
         for student in students:
