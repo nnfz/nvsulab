@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <string>
+#include <algorithm>
 #include <windows.h>
 
 using namespace std;
@@ -67,12 +69,76 @@ public:
         symmetricOrder(node->right, result);
     }
 
+    void draw() {
+        if (root == nullptr) {
+            cout << "Дерево пусто" << endl;
+            return;
+        }
+        int h = height(root);
+        int n = count(root);
+        int cellW = maxLength(root) + 2;
+        int width = n * cellW + maxLength(root);
+        vector<string> grid(h * 2 - 1, string(width, ' '));
+        int counter = 0;
+        fill(root, 0, counter, cellW, grid);
+        for (string& line : grid) {
+            size_t end = line.find_last_not_of(' ');
+            cout << line.substr(0, end + 1) << endl;
+        }
+    }
+
 private:
     void destroy(Node* node) {
         if (node == nullptr) return;
         destroy(node->left);
         destroy(node->right);
         delete node;
+    }
+
+    int height(Node* node) {
+        if (node == nullptr) return 0;
+        return 1 + max(height(node->left), height(node->right));
+    }
+
+    int count(Node* node) {
+        if (node == nullptr) return 0;
+        return 1 + count(node->left) + count(node->right);
+    }
+
+    int maxLength(Node* node) {
+        if (node == nullptr) return 0;
+        int own = (int)to_string(node->value).size();
+        return max(own, max(maxLength(node->left), maxLength(node->right)));
+    }
+
+    int fill(Node* node, int depth, int& counter, int cellW, vector<string>& grid) {
+        if (node == nullptr) return -1;
+
+        int leftCenter = fill(node->left, depth + 1, counter, cellW, grid);
+
+        int col = counter * cellW;
+        counter++;
+        string text = to_string(node->value);
+        int row = depth * 2;
+        for (size_t i = 0; i < text.size(); i++) {
+            grid[row][col + i] = text[i];
+        }
+        int center = col + (int)text.size() / 2;
+
+        int rightCenter = fill(node->right, depth + 1, counter, cellW, grid);
+
+        if (leftCenter != -1 || rightCenter != -1) {
+            grid[row + 1][center] = '+';
+            if (leftCenter != -1) {
+                for (int x = leftCenter; x < center; x++) grid[row + 1][x] = '-';
+                grid[row + 1][leftCenter] = '+';
+            }
+            if (rightCenter != -1) {
+                for (int x = center + 1; x <= rightCenter; x++) grid[row + 1][x] = '-';
+                grid[row + 1][rightCenter] = '+';
+            }
+        }
+        return center;
     }
 };
 
@@ -115,6 +181,9 @@ int main() {
     print("Обход справа:         ", right);
     print("Симметрический обход: ", symmetric);
     print("Отсортированный:      ", treeSort(array));
+
+    cout << endl << "Дерево:" << endl;
+    tree.draw();
 
     return 0;
 }

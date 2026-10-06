@@ -1,12 +1,47 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include <cstdio>
 #include <windows.h>
 
 using namespace std;
 
 const string FILENAME = "Num.dat";
 const string TEMP_FILENAME = "Temp.dat";
+
+bool writeNumber(int num, int position) {
+    ifstream in(FILENAME, ios::binary);
+    ofstream out(TEMP_FILENAME, ios::binary | ios::trunc);
+    if (!out) {
+        return false;
+    }
+
+    int current;
+    int index = 0;
+
+    while (in.read(reinterpret_cast<char*>(&current), sizeof(int))) {
+        if (index == position) {
+            out.write(reinterpret_cast<const char*>(&num), sizeof(int));
+        } else {
+            out.write(reinterpret_cast<const char*>(&current), sizeof(int));
+        }
+        index++;
+    }
+
+    if (index <= position) {
+        int zero = 0;
+        while (index < position) {
+            out.write(reinterpret_cast<const char*>(&zero), sizeof(int));
+            index++;
+        }
+        out.write(reinterpret_cast<const char*>(&num), sizeof(int));
+    }
+
+    in.close();
+    out.close();
+
+    remove(FILENAME.c_str());
+    return rename(TEMP_FILENAME.c_str(), FILENAME.c_str()) == 0;
+}
 
 void writeToFile() {
     int num;
@@ -25,16 +60,11 @@ void writeToFile() {
 
         int position = num - 1000;
 
-        fstream file(FILENAME, ios::in | ios::out | ios::binary);
-        if (!file) {
-            file.open(FILENAME, ios::out | ios::binary);
+        if (writeNumber(num, position)) {
+            cout << "Число записано на позицию " << position << endl;
+        } else {
+            cout << "Ошибка записи в файл!" << endl;
         }
-
-        file.seekp(position * sizeof(int), ios::beg);
-        file.write(reinterpret_cast<char*>(&num), sizeof(int));
-        file.close();
-
-        cout << "Число записано на позицию " << position << endl;
     }
 }
 
@@ -59,7 +89,7 @@ void displayFile() {
 int main() {
     SetConsoleCP(CP_UTF8);
     SetConsoleOutputCP(CP_UTF8);
-    
+
     int choice;
 
     do {
